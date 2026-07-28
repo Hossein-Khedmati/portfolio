@@ -1,0 +1,45 @@
+{
+  "HomePage": {
+    "hero": {
+      "greeting": "Hi, I'm",
+      "firstName": "Hossein",
+      "lastName": "Khedmati",
+      "role": "Frontend Developer",
+      "description": "I build scalable, high-performance web applications with exceptional user experiences using Next.js, React & TypeScript.",
+      "buttons": {
+        "viewProjects": "View Projects",
+        "downloadResume": "Download Resume"
+      },
+      "social": {
+        "github": "GitHub Profile",
+        "linkedin": "LinkedIn Profile",
+        "email": "Email Me"
+      }
+    },
+    "about": {
+      "title": "Get to know me",
+      "subtitle": "About Me",
+      "description": "I'm a passionate Frontend Developer focused on building scalable, high-performance, and visually engaging web applications. I enjoy turning complex ideas into intuitive user experiences with modern technologies like React, Next.js, and TypeScript. I'm always eager to learn, explore new tools, and refine my skills. Currently, I'm working at Etmita UG, where I continue to grow as a developer by building real-world products and embracing new challenges every day.",
+      "stats": [
+        {
+          "value": "+2",
+          "label": "Years Experience"
+        },
+        {
+          "value": "+15",
+          "label": "Projects Built"
+        },
+        {
+          "value": "+15",
+          "label": "Tools & Technologies"
+        },
+        {
+          "value": "∞",
+          "label": "Always Learning"
+        }
+      ],
+      "fullName": "Hossein Khedmati",
+      "role": "Frontend Developer"
+    }
+  }
+}
