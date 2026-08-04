@@ -21,14 +21,14 @@ const chain = [
         name: "HTML",
         color: "#E34F26",
         bg: "#1a0800",
-        icon: <HtmlIcon color="#E34F26" size={30} />,
+        icon: <HtmlIcon size={30} />,
       },
       {
         id: "css",
         name: "CSS",
-        color: "#1572B6",
-        bg: "#00101a",
-        icon: <CssIcon color="#1572B6" size={30} />,
+        color: "#0890f1",
+        bg: "#011625",
+        icon: <CssIcon size={30} />,
       },
     ],
   },
@@ -40,7 +40,7 @@ const chain = [
         name: "Tailwind",
         color: "#06B6D4",
         bg: "#001a1f",
-        icon: <TailwindIcon color="#06B6D4" size={40} />,
+        icon: <TailwindIcon size={40} />,
       },
     ],
   },
@@ -52,14 +52,14 @@ const chain = [
         name: "TypeScript",
         color: "#3178C6",
         bg: "#001a33",
-        icon: <TsIcon color="#3178C6" size={50} />,
+        icon: <TsIcon size={30} />,
       },
       {
         id: "js",
         name: "JavaScript",
         color: "#F7DF1E",
         bg: "#1a1a00",
-        icon: <JsIcon color="#F7DF1E" size={30} />,
+        icon: <JsIcon size={30} />,
       },
     ],
   },
@@ -71,7 +71,7 @@ const chain = [
         name: "React",
         color: "#61DAFB",
         bg: "#001a1f",
-        icon: <ReactIcon color="#61DAFB" size={33} />,
+        icon: <ReactIcon size={30} />,
       },
     ],
   },
@@ -83,7 +83,7 @@ const chain = [
         name: "Next.js",
         color: "#ffffff",
         bg: "#111111",
-        icon: <NextIcon color="#ffffff" size={33} />,
+        icon: <NextIcon size={30} />,
       },
     ],
   },
@@ -395,6 +395,7 @@ export default function SkillsChain() {
           flex-col
           py-10 px-6
         "
+        dir="ltr"
       >
         {chain.map((stage, si) => (
           <div

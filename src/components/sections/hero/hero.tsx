@@ -1,16 +1,14 @@
+"use client";
+
 import FaultyTerminal from "@/components/ui/faulty-terminal";
-import {
-  EmailIcon,
-  GithubIcon,
-  LinkedinIcon,
-} from "@/components/icons";
+import { EmailIcon, GithubIcon, LinkedinIcon } from "@/components/icons";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { codeLines } from "./code-lines";
+import { Typewriter } from "@/components/ui/type-writer";
 
 export const HeroSection = () => {
   const t = useTranslations("HomePage.hero");
-  
 
   return (
     <div className="w-full relative overflow-hidden py-10 h-fit">
@@ -47,17 +45,19 @@ export const HeroSection = () => {
               <span className="text-gradient">{t("lastName")}</span>
             </div>
 
-            <h2 className="text-xl md:text-3xl font-medium">{t("role")}</h2>
+            <h2 className="text-xl md:text-3xl font-medium">
+              <Typewriter text={t("role")} />
+            </h2>
 
             <h3 className="text-sm md:text-lg font-medium text-neutral-500 w-full md:w-2/3">
               {t("description")}
             </h3>
 
             <div className="flex flex-col sm:flex-row gap-3 md:gap-5">
-              <button className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg bg-primary-dark text-sm md:text-base pointer-events-auto">
+              <button className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg bg-primary-dark text-sm md:text-base pointer-events-auto transition-colors duration-200 hover:bg-primary-hover">
                 {t("buttons.viewProjects")}
               </button>
-              <button className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg border border-neutral-500 bg-neutral-50 text-sm md:text-base pointer-events-auto">
+              <button className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg border-2 border-border-dark bg-surface transition-colors duration-200 hover:bg-surface-hover text-sm md:text-base pointer-events-auto">
                 {t("buttons.downloadResume")}
               </button>
             </div>
@@ -66,21 +66,21 @@ export const HeroSection = () => {
               <Link
                 href="#"
                 aria-label={t("social.github")}
-                className="size-8 md:size-10 w-fit rounded-full p-1 bg-neutral-50 flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto"
+                className="size-8 md:size-10 w-fit rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto"
               >
                 <GithubIcon size={24} />
               </Link>
               <Link
                 href="#"
                 aria-label={t("social.linkedin")}
-                className="size-8 md:size-10 w-fit rounded-full p-1 bg-neutral-50 flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto "
+                className="size-8 md:size-10 w-fit rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto "
               >
                 <LinkedinIcon size={16} />
               </Link>
               <Link
                 href="#"
                 aria-label={t("social.email")}
-                className="size-8 md:size-10 w-fit rounded-full p-1 bg-neutral-50 flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto"
+                className="size-8 md:size-10 w-fit rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto"
               >
                 <EmailIcon size={24} />
               </Link>

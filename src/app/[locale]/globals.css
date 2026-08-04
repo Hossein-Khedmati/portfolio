@@ -10,6 +10,8 @@
   --primary-light: #818cf8; /* Indigo 400 */
   --primary-dark: #3730a3;  /* Indigo 800 */
   --primary-hover: #4338ca; /* Indigo 700 */
+  --primary-background-image: #818df811;
+
   
   /* Secondary Colors */
   --secondary: #7c3aed;     /* Purple 600 */
@@ -62,6 +64,8 @@
     --primary-light: #a5b4fc; /* Indigo 300 */
     --primary-dark: #4f46e5;  /* Indigo 600 */
     --primary-hover: #6366f1; /* Indigo 500 */
+    --primary-background-image: #818df811;
+
     
     /* Secondary Colors - Dark Mode */
     --secondary: #a78bfa;     /* Purple 400 */
@@ -115,6 +119,7 @@
   --color-primary-light: var(--primary-light);
   --color-primary-dark: var(--primary-dark);
   --color-primary-hover: var(--primary-hover);
+  --color-primary-background-image: var(--primary-background-image);
   
   /* Secondary */
   --color-secondary: var(--secondary);
@@ -166,6 +171,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  background-image: 
+    linear-gradient(var(--color-primary-background-image) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-primary-background-image) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: -1px -1px;
 }
 
 /* Container */
@@ -237,9 +247,26 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #b4b8ea, #4957f5, #2537ff);
+  background: linear-gradient(#b4b8ea, #4957f5, #2537ff);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 2s ease-in-out infinite;
 }

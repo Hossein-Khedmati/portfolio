@@ -29,9 +29,9 @@ function toPascalCase(str) {
  * - Remove XML declaration
  * - Remove comments
  * - Remove fixed width/height (we handle via props)
- * - Replace hardcoded colors with currentColor
+ * - Optionally replace colors based on config
  */
-function processSvgContent(svgContent) {
+function processSvgContent(svgContent, preserveColors = true) {
   let processed = svgContent
     // Remove XML declaration
     .replace(/<\?xml[^?]*\?>/g, "")
@@ -40,19 +40,23 @@ function processSvgContent(svgContent) {
     // Remove fixed width and height attributes from <svg>
     .replace(/<svg([^>]*)width="[^"]*"/, "<svg$1")
     .replace(/<svg([^>]*)height="[^"]*"/, "<svg$1")
-    // Replace hardcoded stroke colors with currentColor
-    .replace(/stroke="#[0-9a-fA-F]{3,6}"/g, 'stroke="currentColor"')
-    .replace(/stroke="black"/g, 'stroke="currentColor"')
-    .replace(/stroke="white"/g, 'stroke="currentColor"')
-    // Replace hardcoded fill colors with currentColor
-    .replace(/fill="#[0-9a-fA-F]{3,6}"/g, 'fill="currentColor"')
-    .replace(/fill="black"/g, 'fill="currentColor"')
-    // Keep fill="none" as is (important for outlined icons)
-    .replace(/fill="currentColor" /g, (match, offset, string) => {
-      // Don't replace fill="none"
-      return match;
-    })
     .trim();
+
+  // Only replace colors if NOT preserving them
+  if (!preserveColors) {
+    // Replace hardcoded stroke colors with currentColor
+    processed = processed
+      .replace(/stroke="#[0-9a-fA-F]{3,6}"/g, 'stroke="currentColor"')
+      .replace(/stroke="black"/g, 'stroke="currentColor"')
+      .replace(/stroke="white"/g, 'stroke="currentColor"')
+      // Replace hardcoded fill colors with currentColor
+      .replace(/fill="#[0-9a-fA-F]{3,6}"/g, 'fill="currentColor"')
+      .replace(/fill="black"/g, 'fill="currentColor"')
+      // Keep fill="none" as is (important for outlined icons)
+      .replace(/fill="currentColor" /g, (match, offset, string) => {
+        return match;
+      });
+  }
 
   return processed;
 }
@@ -69,11 +73,19 @@ function extractSvgParts(svgContent) {
   const xmlnsMatch = svgContent.match(/xmlns="([^"]*)"/);
   const xmlns = xmlnsMatch ? xmlnsMatch[1] : "http://www.w3.org/2000/svg";
 
+  // Get preserveAspectRatio if exists
+  const preserveAspectRatioMatch = svgContent.match(
+    /preserveAspectRatio="([^"]*)"/,
+  );
+  const preserveAspectRatio = preserveAspectRatioMatch
+    ? preserveAspectRatioMatch[1]
+    : "";
+
   // Extract inner content (everything between <svg...> and </svg>)
   const innerMatch = svgContent.match(/<svg[^>]*>([\s\S]*)<\/svg>/);
   const innerContent = innerMatch ? innerMatch[1].trim() : "";
 
-  return { viewBox, xmlns, innerContent };
+  return { viewBox, xmlns, preserveAspectRatio, innerContent };
 }
 
 /**
@@ -97,55 +109,53 @@ function svgToJsx(svgContent) {
     .replace(/font-size=/g, "fontSize=")
     .replace(/font-family=/g, "fontFamily=")
     .replace(/text-anchor=/g, "textAnchor=")
-    .replace(/dominant-baseline=/g, "dominantBaseline=");
+    .replace(/dominant-baseline=/g, "dominantBaseline=")
+    .replace(/xmlns:xlink=/g, "xmlnsXlink=")
+    .replace(/xlink:href=/g, "xlinkHref=");
 }
 
 /**
  * Generate React component string
  */
-function generateComponent(componentName, svgContent) {
-  const processed = processSvgContent(svgContent);
-  const { viewBox, xmlns, innerContent } = extractSvgParts(processed);
+function generateComponent(componentName, svgContent, preserveColors = true) {
+  const processed = processSvgContent(svgContent, preserveColors);
+  const { viewBox, xmlns, preserveAspectRatio, innerContent } =
+    extractSvgParts(processed);
   const jsxInnerContent = svgToJsx(innerContent);
+
+  const preserveAspectRatioAttr = preserveAspectRatio
+    ? `\n      preserveAspectRatio="${preserveAspectRatio}"`
+    : "";
 
   return `import React from "react";
 
 interface ${componentName}Props {
   size?: number | string;
   color?: string;
-  stroke?: string;
-  fill?: string;
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
-  strokeWidth?: number | string;
   [key: string]: unknown; // for any additional SVG props
 }
 
 const ${componentName} = ({
   size = 24,
   color,
-  stroke,
-  fill,
   className = "",
   style,
   onClick,
-  strokeWidth,
   ...rest
 }: ${componentName}Props) => {
   return (
     <svg
-      xmlns="${xmlns}"
+      xmlns="${xmlns}"${preserveAspectRatioAttr}
       viewBox="${viewBox}"
       width={size}
       height={size}
       color={color}
-      stroke={stroke}
-      fill={fill || "none"}
       className={className}
       style={style}
       onClick={onClick}
-      strokeWidth={strokeWidth}
       {...rest}
     >
       ${jsxInnerContent}
@@ -189,8 +199,20 @@ async function generateSvgComponents() {
       // Read SVG file
       const svgContent = await fs.readFile(svgFile, "utf-8");
 
-      // Generate component
-      const componentCode = generateComponent(componentName, svgContent);
+      // Check if this is a multi-colored logo that should preserve colors
+      const hasGradients =
+        svgContent.includes("linearGradient") ||
+        svgContent.includes("radialGradient");
+      const hasMultipleColors =
+        (svgContent.match(/fill="#[0-9a-fA-F]{6}"/g) || []).length > 1;
+      const preserveColors = hasGradients || hasMultipleColors;
+
+      // Generate component with appropriate color handling
+      const componentCode = generateComponent(
+        componentName,
+        svgContent,
+        preserveColors,
+      );
 
       // Write component file
       await fs.writeFile(outputFile, componentCode, "utf-8");
@@ -199,9 +221,13 @@ async function generateSvgComponents() {
         name: componentName,
         file: `${componentName}.tsx`,
         source: path.relative(process.cwd(), svgFile),
+        preservesColors: preserveColors,
       });
 
-      console.log(`✅ Generated: ${componentName}.tsx  ← ${fileName}.svg`);
+      const colorStatus = preserveColors ? "🎨 (preserved)" : "⚪ (monochrome)";
+      console.log(
+        `✅ Generated: ${componentName}.tsx  ← ${fileName}.svg ${colorStatus}`,
+      );
     } catch (error) {
       errors.push({ file: svgFile, error: error.message });
       console.error(`❌ Failed: ${fileName}.svg - ${error.message}`);
@@ -215,13 +241,22 @@ async function generateSvgComponents() {
       .join("\n");
 
     await fs.writeFile(INDEX_FILE, indexContent + "\n", "utf-8");
-    console.log(`\n📦 Generated index.ts with ${generatedComponents.length} exports`);
+    console.log(
+      `\n📦 Generated index.ts with ${generatedComponents.length} exports`,
+    );
   }
 
   // Summary
   console.log("\n==============================");
   console.log(`✨ Done! ${generatedComponents.length} component(s) generated`);
   console.log(`📁 Output: ${COMPONENTS_OUTPUT_DIR}`);
+
+  const preserved = generatedComponents.filter((c) => c.preservesColors);
+  if (preserved.length > 0) {
+    console.log(
+      `🎨 ${preserved.length} component(s) preserve their original colors`,
+    );
+  }
 
   if (errors.length > 0) {
     console.log(`⚠️  ${errors.length} error(s) occurred`);
@@ -234,12 +269,12 @@ async function generateSvgComponents() {
     console.log("─────────────────");
     const example = generatedComponents[0];
     console.log(`import { ${example.name} } from "@/components/icons";\n`);
-    console.log(`// Basic usage`);
+    console.log(`// Basic usage (preserves original colors if multi-colored)`);
     console.log(`<${example.name} />\n`);
-    console.log(`// With props`);
-    console.log(
-      `<${example.name} size={32} color="blue" className="my-icon" strokeWidth={1.5} />\n`
-    );
+    console.log(`// With size override`);
+    console.log(`<${example.name} size={48} />\n`);
+    console.log(`// With color override (only works for single-color icons)`);
+    console.log(`<${example.name} size={32} color="blue" />\n`);
   }
 }
 

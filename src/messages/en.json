@@ -1,4 +1,14 @@
 {
+  "Menu": {
+    "home": "Home",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "logo": "PORTFOLIO",
+    "letsTalk": "Let's Talk",
+    "navigation": "Navigation",
+    "close": "Close"
+  },
   "HomePage": {
     "hero": {
       "greeting": "Hi, I'm",
@@ -22,15 +32,15 @@
       "description": "I'm a passionate Frontend Developer focused on building scalable, high-performance, and visually engaging web applications. I enjoy turning complex ideas into intuitive user experiences with modern technologies like React, Next.js, and TypeScript. I'm always eager to learn, explore new tools, and refine my skills. Currently, I'm working at Etmita UG, where I continue to grow as a developer by building real-world products and embracing new challenges every day.",
       "stats": [
         {
-          "value": "+2",
+          "value": "2",
           "label": "Years Experience"
         },
         {
-          "value": "+15",
+          "value": "15",
           "label": "Projects Built"
         },
         {
-          "value": "+15",
+          "value": "15",
           "label": "Tools & Technologies"
         },
         {
@@ -40,6 +50,89 @@
       ],
       "fullName": "Hossein Khedmati",
       "role": "Frontend Developer"
+    },
+    "skills": {
+      "title": "My Journey",
+      "description": "Skills & Technologies",
+      "cta": "View all Skills"
+    },
+    "experiences": {
+      "title": "My Career",
+      "description": "Job Experiences",
+      "cta": "View all Experiences"
+    },
+    "projects": {
+      "title": "My Works",
+      "description": "Featured Projects",
+      "cta": "View all Projects"
     }
+  },
+  "SkillsPage": {
+    "title": "My Skills",
+    "subtitle": "Technologies I use to build products",
+    "description": "A collection of tools, technologies and practices I use to create scalable and beautiful digital experiences.",
+    "categories": {
+      "frontend": {
+        "title": "Frontend Development",
+        "description": "Building scalable, performant and modern web applications with React ecosystem."
+      },
+      "ui": {
+        "title": "UI Engineering",
+        "description": "Creating polished interfaces with modern design systems and smooth experiences."
+      },
+      "state": {
+        "title": "State & Data Management",
+        "description": "Managing complex application states and handling scalable data flows."
+      },
+      "backend": {
+        "title": "Backend & Database",
+        "description": "Building full-stack applications with modern backend services."
+      },
+      "testing": {
+        "title": "Testing & Quality",
+        "description": "Improving reliability through testing and development standards."
+      },
+      "tools": {
+        "title": "Tools & Workflow",
+        "description": "Modern tools and practices for efficient development workflows."
+      }
+    }
+  },
+  "ContactPage": {
+    "title": "Get In Touch",
+    "subtitle": "Let's build something",
+    "subtitleHighlight": "exceptional.",
+    "description": "Have a project idea, collaboration opportunity, or just want to connect? I would love to hear from you.",
+    "contactInfo": "Contact Information",
+    "availability": "Available For Work",
+    "availabilityItems": {
+      "freelance": "Freelance Projects",
+      "fulltime": "Full-time Opportunities",
+      "remote": "Remote Collaboration"
+    },
+    "replyTime": "Usually replies within 24 hours.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Project discussion",
+      "details": "Project Details",
+      "detailsPlaceholder": "Tell me about your project...",
+      "submit": "Send Message",
+      "footer": "Great products start with great conversations."
+    },
+    "socials": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email",
+      "telegram": "Telegram"
+    }
+  },
+  "ProjectsPage": {
+    "title": "My Works",
+    "subtitle": "Projects I've Built",
+    "description": "A collection of applications, products and experiments where I focused on performance, scalability and beautiful user experiences."
   }
 }

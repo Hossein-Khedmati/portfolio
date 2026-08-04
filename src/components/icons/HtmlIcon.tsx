@@ -3,24 +3,18 @@ import React from "react";
 interface HtmlIconProps {
   size?: number | string;
   color?: string;
-  stroke?: string;
-  fill?: string;
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
-  strokeWidth?: number | string;
   [key: string]: unknown; // for any additional SVG props
 }
 
 const HtmlIcon = ({
   size = 24,
-  color,
-  stroke,
-  fill,
+  color="#DE4C36",
   className = "",
   style,
   onClick,
-  strokeWidth,
   ...rest
 }: HtmlIconProps) => {
   return (
@@ -30,12 +24,9 @@ const HtmlIcon = ({
       width={size}
       height={size}
       color={color}
-      stroke={stroke}
-      fill={fill || "none"}
       className={className}
       style={style}
       onClick={onClick}
-      strokeWidth={strokeWidth}
       {...rest}
     >
       <title>html [#124]</title>

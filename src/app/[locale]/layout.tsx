@@ -6,6 +6,9 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { LogoIcon } from "@/components/icons";
 import Link from "next/link";
+import { Header } from "@/components/ui/header";
+import AdvancedTechCursor from "@/components/ui/custom-cursor";
+import CustomCursor from "@/components/ui/custom-cursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,20 +52,8 @@ export default async function RootLayout({ children, params }: Props) {
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
-          <header className=" py-1.5 bg-surface">
-            <div className="container flex justify-between items-center">
-            <LogoIcon size={40}/>
-            <div className="flex gap-4">
-              <Link href="#">About</Link>
-              <Link href="#">About</Link>
-              <Link href="#">About</Link>
-              <Link href="#">About</Link>
-            </div>
-            <div className="border-2 border-blue-600 py-1 px-6 rounded-md">
-              Lets Talk
-            </div>
-            </div>
-          </header>
+          <Header />
+          {/* <CustomCursor /> */}
           {children}
         </NextIntlClientProvider>
       </body>

@@ -11,7 +11,7 @@ interface NextIconProps {
 
 const NextIcon = ({
   size = 24,
-  color = "#ffffff", // Default Next.js white
+  color = "#ffffff",
   className = "",
   style,
   onClick,

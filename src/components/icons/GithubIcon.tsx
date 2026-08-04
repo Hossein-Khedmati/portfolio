@@ -3,24 +3,18 @@ import React from "react";
 interface GithubIconProps {
   size?: number | string;
   color?: string;
-  stroke?: string;
-  fill?: string;
   className?: string;
   style?: React.CSSProperties;
   onClick?: () => void;
-  strokeWidth?: number | string;
   [key: string]: unknown; // for any additional SVG props
 }
 
 const GithubIcon = ({
   size = 24,
   color,
-  stroke,
-  fill,
   className = "",
   style,
   onClick,
-  strokeWidth,
   ...rest
 }: GithubIconProps) => {
   return (
@@ -30,12 +24,9 @@ const GithubIcon = ({
       width={size}
       height={size}
       color={color}
-      stroke={stroke}
-      fill={fill || "none"}
       className={className}
       style={style}
       onClick={onClick}
-      strokeWidth={strokeWidth}
       {...rest}
     >
       <title>github [#142]</title>
