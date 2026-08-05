@@ -100,11 +100,10 @@ function ExperienceCard({ experience, locale, cardVariants }: CardProps) {
             {t(experience.role)}
           </h3>
 
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <span className="text-primary font-semibold text-base md:text-lg">
               {t(experience.company)}
             </span>
-            <Dot />
             <span className="text-xs md:text-sm text-neutral-400 rounded-full border border-border-dark px-2.5 py-0.5 font-medium">
               {t(experience.employmentType)}
             </span>
@@ -166,7 +165,7 @@ function ExperienceCard({ experience, locale, cardVariants }: CardProps) {
 
       {/* ── Tech Stack ─────────────────────────────────────── */}
       <div className="pt-4 border-t border-border-dark/50">
-        <p className="text-[11px] uppercase tracking-widest text-neutral-600 font-semibold mb-3">
+        <p className="text-sm uppercase tracking-widest text-neutral-600 font-semibold mb-3">
           {tExperinces("stacks")}
         </p>
         <div className="flex flex-wrap gap-1.5">
@@ -217,14 +216,9 @@ function Section({ title, items, dotColor }: SectionProps) {
 
 function SectionTitle({ title }: { title: string }) {
   return (
-    <h4 className="text-[11px] uppercase tracking-widest font-bold text-neutral-800">
+    <h4 className="text-sm uppercase tracking-widest font-bold text-neutral-800">
       {title}
     </h4>
   );
 }
 
-// ─── Reusable typography elements ─────────────────────────────────────────────
-
-function Dot() {
-  return <span className="text-neutral-600 select-none">·</span>;
-}

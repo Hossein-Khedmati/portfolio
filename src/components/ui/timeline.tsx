@@ -28,11 +28,11 @@ function DateBadge({
 
   return (
     <div className="flex shrink-0 flex-col items-center rounded-xl border border-border-dark bg-surface-hover/40 px-3.5 py-1.5 text-center">
-      <span className="text-[10px] font-semibold uppercase tracking-widest text-primary">
+      <span className="text-xs font-semibold uppercase tracking-widest text-primary">
         {startDate[locale]}
       </span>
       <div className="my-1 h-px w-full bg-border-dark" />
-      <span className="text-[10px] font-semibold uppercase tracking-widest text-neutral-500">
+      <span className="text-xs font-semibold uppercase tracking-widest text-neutral-500">
         {endDate[locale] === "" ? t("present") : endDate[locale]}
       </span>
     </div>
@@ -70,7 +70,7 @@ function JobCard({ job, isLeft }: { job: Job; isLeft: boolean }) {
 
       {/* Achievements */}
       <div>
-        <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-neutral-500">
+        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-neutral-500">
           {t("what-learned")}
         </p>
         <ul className="space-y-2">
