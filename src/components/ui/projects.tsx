@@ -57,6 +57,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           src={project.image}
           alt={project.title}
           fill
+          sizes="500"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
           priority={index === 0}
         />

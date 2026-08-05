@@ -128,10 +128,10 @@ export default function Home() {
           <div className="grid grid-cols-4 gap-10 max-lg:grid-cols-2 max-lg:gap-5 ">
             {stats.map((stat: Stat) => (
               <div
-                className="relative p-0.5 rounded-2xl bg-linear-to-r from-primary-dark via-border to-secondary-dark animate-gradient hover:scale-105 transition-all duration-300"
+                className="relative p-0.5 rounded-2xl bg-linear-to-r from-primary-dark via-border to-secondary-dark animate-gradient hover:scale-105 transition-all duration-300 flex items-stretch"
                 key={stat.label}
               >
-                <div className="flex flex-col items-center justify-center p-5 rounded-2xl bg-surface backdrop-blur-sm gap-1 min-h-25">
+                <div className="flex flex-col items-center justify-center p-5 rounded-2xl bg-surface backdrop-blur-sm gap-1 min-h-25 w-full">
                   <span className="text-xl sm:text-2xl" ref={ref}>
                     {stat.value === "∞" ? (
                       <LoopIcon color="var(--neutral-950)" size={30} />
@@ -198,7 +198,7 @@ export default function Home() {
         </div>
         <div className="container flex justify-center py-5">
           <Link
-            href="/skills"
+            href="/skills/experiences"
             className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg bg-surface text-sm md:text-base pointer-events-auto hover:bg-surface-hover/50 active:bg-surface-active border border-border-dark transition-colors duration-300 "
           >
             {tExperiences("cta")}

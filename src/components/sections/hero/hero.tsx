@@ -53,34 +53,34 @@ export const HeroSection = () => {
               {t("description")}
             </h3>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-5">
-              <button className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg bg-primary-dark text-sm md:text-base pointer-events-auto transition-colors duration-200 hover:bg-primary-hover">
+            <div className="flex flex-row gap-3 md:gap-5">
+              <Link href="/projects" className="p-2 md:p-3 px-4 md:px-6 rounded-lg bg-primary-dark text-sm md:text-base pointer-events-auto transition-colors duration-200 hover:bg-primary-hover">
                 {t("buttons.viewProjects")}
-              </button>
-              <button className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg border-2 border-border-dark bg-surface transition-colors duration-200 hover:bg-surface-hover text-sm md:text-base pointer-events-auto">
+              </Link>
+              <Link href="#" className="p-2 md:p-3 px-4 md:px-6 rounded-lg border-2 border-border bg-surface transition-colors duration-200 hover:bg-surface-hover text-sm md:text-base pointer-events-auto">
                 {t("buttons.downloadResume")}
-              </button>
+              </Link>
             </div>
 
             <div className="flex gap-3 md:gap-5">
               <Link
                 href="#"
                 aria-label={t("social.github")}
-                className="size-8 md:size-10 w-fit rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto"
+                className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto shadow-md shadow-primary-dark/70"
               >
                 <GithubIcon size={24} />
               </Link>
               <Link
                 href="#"
                 aria-label={t("social.linkedin")}
-                className="size-8 md:size-10 w-fit rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto "
+                className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto shadow-md shadow-primary-dark/70"
               >
                 <LinkedinIcon size={16} />
               </Link>
               <Link
                 href="#"
                 aria-label={t("social.email")}
-                className="size-8 md:size-10 w-fit rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto"
+                className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto shadow-md shadow-primary-dark/70"
               >
                 <EmailIcon size={24} />
               </Link>
@@ -93,7 +93,7 @@ export const HeroSection = () => {
               <div className="dot dot-green" />
             </div>
             <div
-              className="code-content text-sm md:text-xl!"
+              className="code-content max-sm:p-4! text-sm md:text-xl!"
               style={{ direction: "ltr", textAlign: "left" }}
             >
               {codeLines.map((line) => (

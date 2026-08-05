@@ -3,81 +3,46 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-interface Job {
-  id: number;
-  company: string;
-  jobTitle: string;
-  startDate: string;
-  endDate: string;
-  isCurrentJob?: boolean;
-  achievements: string[];
-}
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
-const jobsData: Job[] = [
-  {
-    id: 1,
-    company: "Etmita UG",
-    jobTitle: "Frontend Developer",
-    startDate: "Dec 2025",
-    endDate: "Present",
-    isCurrentJob: true,
-    achievements: [
-      "Advanced TypeScript proficiency through production-scale applications",
-      "Established modern component development and testing practices",
-      "Strengthened experience with scalable frontend architecture",
-      "Thrived in a collaborative engineering environment with structured workflows",
-    ],
-  },
-  {
-    id: 2,
-    company: "Cyrays Co.",
-    jobTitle: "Intern Frontend Developer",
-    startDate: "Jul 2025",
-    endDate: "Sep 2025",
-    achievements: [
-      "Built a strong foundation in TypeScript and scalable React development",
-      "Adopted feature-driven architecture and maintainable code organization",
-      "Expanded frontend expertise with Shadcn UI and modern tooling",
-      "Developed professional collaboration and agile development practices",
-    ],
-  },
-];
+import { Job, timeLineJobsData } from "@/data/experiences/experiences-tiemline";
+import { useLocale, useTranslations } from "next-intl";
+import { Locale } from "@/config/locales";
 
 // ─── Sub-Components ───────────────────────────────────────────────────────────
 
 function DateBadge({
   startDate,
   endDate,
-  isCurrent,
+  locale,
 }: {
-  startDate: string;
-  endDate: string;
-  isCurrent?: boolean;
+  startDate: {
+    en: string;
+    fa: string;
+  };
+  endDate: {
+    en: string;
+    fa: string;
+  };
+  locale: Locale;
 }) {
+  const t = useTranslations("HomePage.experiences");
+
   return (
     <div className="flex shrink-0 flex-col items-center rounded-xl border border-border-dark bg-surface-hover/40 px-3.5 py-1.5 text-center">
       <span className="text-[10px] font-semibold uppercase tracking-widest text-primary">
-        {startDate}
+        {startDate[locale]}
       </span>
       <div className="my-1 h-px w-full bg-border-dark" />
       <span className="text-[10px] font-semibold uppercase tracking-widest text-neutral-500">
-        {endDate}
+        {endDate[locale] === "" ? t("present") : endDate[locale]}
       </span>
-      {isCurrent && (
-        <span className="mt-1.5 rounded-full bg-primary/10 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-primary">
-          Current
-        </span>
-      )}
     </div>
   );
 }
 
 function JobCard({ job, isLeft }: { job: Job; isLeft: boolean }) {
+  const locale = useLocale() as Locale;
+  const t = useTranslations("HomePage.experiences");
+
   return (
     <motion.div
       initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
@@ -92,17 +57,13 @@ function JobCard({ job, isLeft }: { job: Job; isLeft: boolean }) {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h3 className="text-lg font-bold tracking-tight text-foreground sm:text-xl">
-            {job.company}
+            {job.company[locale]}
           </h3>
           <p className="text-xs font-medium text-primary sm:text-sm">
-            {job.jobTitle}
+            {job.jobTitle[locale]}
           </p>
         </div>
-        <DateBadge
-          startDate={job.startDate}
-          endDate={job.endDate}
-          isCurrent={job.isCurrentJob}
-        />
+        <DateBadge locale={locale} startDate={job.startDate} endDate={job.endDate} />
       </div>
 
       <div className="my-3 h-px bg-border-dark/60" />
@@ -110,10 +71,10 @@ function JobCard({ job, isLeft }: { job: Job; isLeft: boolean }) {
       {/* Achievements */}
       <div>
         <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-neutral-500">
-          What I Learned & Earned
+          {t("what-learned")}
         </p>
         <ul className="space-y-2">
-          {job.achievements.map((ach, i) => (
+          {job.achievements[locale].map((ach, i) => (
             <li
               key={i}
               className="flex items-start gap-2.5 text-xs text-neutral-400 sm:text-sm"
@@ -196,6 +157,8 @@ function DesktopTimeline({
 }: {
   containerRef: React.RefObject<HTMLDivElement | null>;
 }) {
+  const t = useTranslations("HomePage.experiences");
+
   return (
     <div className="hidden md:block relative max-w-5xl mx-auto">
       {/* Center Line Track - Anchored precisely to dot centers */}
@@ -210,7 +173,7 @@ function DesktopTimeline({
           <div className="z-10 flex flex-col items-center">
             <div className="mb-5 text-center">
               <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-                The Career Path Begins
+                {t("career-begins")}
               </p>
             </div>
             <TimelineDot isLarge />
@@ -219,7 +182,7 @@ function DesktopTimeline({
         </div>
 
         {/* Cards & Nodes */}
-        {jobsData.map((job, index) => {
+        {timeLineJobsData.map((job, index) => {
           const isLeft = index % 2 === 0;
           return (
             <div
@@ -247,10 +210,10 @@ function DesktopTimeline({
             <TimelineDot isLarge />
             <div className="mt-5 text-center">
               <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-                The Journey Continues
+                {t("journey")}
               </p>
               <p className="mt-1 text-[11px] text-neutral-500">
-                Always learning, always building
+                {t("always-learn")}
               </p>
             </div>
           </div>
@@ -268,10 +231,11 @@ function MobileTimeline({
 }: {
   containerRef: React.RefObject<HTMLDivElement | null>;
 }) {
+  const t = useTranslations("HomePage.experiences");
   return (
     <div className="relative flex flex-col gap-8 md:hidden">
       {/* Mobile Track Line */}
-      <div className="absolute left-5.75 top-6 bottom-6 w-0.5">
+      <div className="absolute inset-s-5.75 top-6 bottom-6 w-0.5">
         <ScrollProgressLine containerRef={containerRef} />
       </div>
 
@@ -280,13 +244,13 @@ function MobileTimeline({
         <TimelineDot isLarge />
         <div>
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            The Career Path Begins
+            {t("career-begins")}
           </p>
         </div>
       </div>
 
       {/* Job Items */}
-      {jobsData.map((job) => (
+      {timeLineJobsData.map((job) => (
         <div key={job.id} className="flex gap-4 items-start">
           <div className="z-10 flex justify-center w-12 pt-4">
             <TimelineDot />
@@ -302,10 +266,10 @@ function MobileTimeline({
         <TimelineDot isLarge />
         <div>
           <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-            The Journey Continues
+            {t("journey")}
           </p>
           <p className="text-[11px] text-neutral-500 mt-0.5">
-            Always learning, always building
+            {t("always-learn")}
           </p>
         </div>
       </div>

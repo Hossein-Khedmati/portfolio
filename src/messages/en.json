@@ -1,7 +1,7 @@
 {
   "Menu": {
     "home": "Home",
-    "skills": "Skills",
+    "skills": "Skills & Experiences",
     "projects": "Projects",
     "contact": "Contact",
     "logo": "PORTFOLIO",
@@ -59,7 +59,12 @@
     "experiences": {
       "title": "My Career",
       "description": "Job Experiences",
-      "cta": "View all Experiences"
+      "cta": "View all Experiences",
+      "what-learned":"What I Learned & Earned",
+      "present":"present",
+      "career-begins":"The Career Path Begins",
+      "journey":"The Journey Continues",
+      "always-learn":"Always learning, always building"
     },
     "projects": {
       "title": "My Works",
@@ -71,6 +76,10 @@
     "title": "My Skills",
     "subtitle": "Technologies I use to build products",
     "description": "A collection of tools, technologies and practices I use to create scalable and beautiful digital experiences.",
+    "tabs": {
+      "skills": "Skills",
+      "experiences": "Experiences"
+    },
     "categories": {
       "frontend": {
         "title": "Frontend Development",
@@ -96,6 +105,13 @@
         "title": "Tools & Workflow",
         "description": "Modern tools and practices for efficient development workflows."
       }
+    },
+    "experinces":{
+      "current":"Current Position",
+      "responsibility":"Key Responsibilities",
+      "expertise":"Areas of Expertise",
+      "achievements":"Key Achievements",
+      "stacks":"Tech Stack"
     }
   },
   "ContactPage": {

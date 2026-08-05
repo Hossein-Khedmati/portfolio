@@ -75,9 +75,9 @@ export function Header() {
           <span className="font-bold tracking-tight text-lg">{t("logo")}</span>
         </Link>
 
-        {/* Desktop */}
+        {/* Desktop - Hide below 850px, show above 850px */}
 
-        <nav className="hidden items-center gap-2 md:flex">
+        <nav className="hidden min-[850px]:flex items-center gap-2">
           {navLinks.map((link) => {
             const active =
               pathname === link.href ||
@@ -131,14 +131,14 @@ export function Header() {
 
           <Link
             href="/contact"
-            className="hidden rounded-full bg-primary-dark px-5 py-2 text-sm font-bold text-foreground transition hover:scale-[1.02] hover:bg-primary-dark/90 active:scale-95 sm:block"
+            className="hidden min-[850px]:block rounded-full bg-primary-dark px-5 py-2 text-sm font-bold text-foreground transition hover:scale-[1.02] hover:bg-primary-dark/90 active:scale-95"
           >
             {t("letsTalk")}
           </Link>
 
           <button
             onClick={() => setIsOpen((prev) => !prev)}
-            className="rounded-lg p-2 transition hover:bg-white/5 md:hidden"
+            className="rounded-lg p-2 transition hover:bg-white/5 min-[850px]:hidden"
             aria-label={isOpen ? t("close") : t("navigation")}
           >
             <AnimatePresence mode="wait">
@@ -181,7 +181,7 @@ export function Header() {
                 duration: 0.25,
               }}
               onClick={() => setIsOpen(false)}
-              className="fixed top-0 right-0 z-49 w-full h-screen bg-black/70 backdrop-blur-md md:hidden"
+              className="fixed top-0 right-0 z-49 w-full h-screen bg-black/70 backdrop-blur-md min-[850px]:hidden"
             />
 
             {/* Drawer */}
@@ -195,7 +195,7 @@ export function Header() {
                 damping: 28,
                 stiffness: 260,
               }}
-              className="fixed right-0 top-0 z-50 flex h-screen w-75 flex-col border-l border-border bg-surface backdrop-blur-2xl shadow-2xl md:hidden"
+              className="fixed right-0 top-0 z-50 flex h-screen w-75 flex-col border-l border-border bg-surface backdrop-blur-2xl shadow-2xl min-[850px]:hidden"
             >
               <div className="flex h-16 items-center justify-between border-b border-border px-6">
                 <span className="font-semibold">{t("navigation")}</span>
@@ -236,18 +236,11 @@ export function Header() {
                         className={clsx(
                           "group flex items-center justify-between rounded-xl px-4 py-4 text-base font-medium transition-all",
                           active
-                            ? "bg-primary-dark text-black shadow-lg shadow-primary-dark/20"
+                            ? "bg-primary-dark text-white shadow-lg shadow-primary-dark/20"
                             : "text-foreground/80 hover:bg-foreground/5 hover:text-foreground",
                         )}
                       >
                         {t(link.key)}
-
-                        {active && (
-                          <motion.div
-                            layoutId="mobile-dot"
-                            className="h-2 w-2 rounded-full bg-black"
-                          />
-                        )}
                       </Link>
                     </motion.div>
                   );
