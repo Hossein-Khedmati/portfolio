@@ -1,29 +1,26 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { GithubIcon } from "../icons";
-
-export interface Project {
-  id: number;
-  title: string;
-  subtitle: string;
-  description: string;
-  tags: string[];
-  features: string[];
-  image: string;
-  demoUrl: string;
-  repoUrl: string;
-  year: string;
-}
+import { Project } from "@/data/projects/projects";
+import { useLocale, useTranslations } from "next-intl";
 
 interface ProjectsSectionProps {
   projects: Project[];
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  locale,
+}: {
+  project: Project;
+  index: number;
+  locale: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, {
     once: true,
@@ -32,6 +29,18 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   });
 
   const isFeatured = project.id === 1;
+
+  const subtitle =
+    project.subtitle[locale as keyof typeof project.subtitle] ||
+    project.subtitle.en;
+  const description =
+    project.description[locale as keyof typeof project.description] ||
+    project.description.en;
+  const features =
+    project.features[locale as keyof typeof project.features] ||
+    project.features.en;
+
+  const t = useTranslations("ProjectsPage");
 
   return (
     <motion.div
@@ -68,7 +77,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </span>
         </div>
       </div>
-      
+
       {/* Content Section */}
       <div
         className={`flex flex-col flex-1 gap-4 p-6 ${
@@ -77,7 +86,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       >
         <div>
           <p className="text-[10px] text-neutral-500 tracking-[0.2em] uppercase mb-1">
-            {project.subtitle}
+            {subtitle}
           </p>
           <h3
             className={`font-bold leading-tight text-white ${
@@ -89,20 +98,22 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
 
         <p className="text-base text-neutral-400 leading-relaxed line-clamp-2">
-          {project.description}
+          {description}
         </p>
 
-        {/* Feature list  */}
+        {/* Feature list */}
         <ul className="flex flex-col gap-2 shrink-0">
-          {project.features.map((feature) => (
-            <li
-              key={feature}
-              className="flex items-center gap-2.5 text-sm text-neutral-400"
-            >
-              <span className="w-1 h-1 rounded-full bg-primary/60 shrink-0" />
-              {feature}
-            </li>
-          ))}
+          {features
+            .slice(0, isFeatured ? features.length : 3)
+            .map((feature) => (
+              <li
+                key={feature}
+                className="flex items-center gap-2.5 text-sm text-neutral-400"
+              >
+                <span className="w-1 h-1 rounded-full bg-primary/60 shrink-0" />
+                {feature}
+              </li>
+            ))}
         </ul>
 
         {/* Tags*/}
@@ -123,9 +134,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-black text-sm font-semibold transition-all hover:bg-primary/90 active:scale-95"
+            className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary-dark text-foreground text-base font-semibold transition-all hover:bg-primary-dark/90 active:scale-95"
           >
-            Live Demo
+            {t("demo")}
           </Link>
 
           <Link
@@ -144,19 +155,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
-  useEffect(() => {
-    const section = document.querySelector("section");
-    if (section) {
-      section.style.scrollBehavior = "smooth";
-    }
-  }, []);
+  const locale = useLocale();
 
   return (
     <section className="py-4 scroll-mt-20" id="projects">
       <div className="container px-4 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {projects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              locale={locale}
+            />
           ))}
         </div>
       </div>

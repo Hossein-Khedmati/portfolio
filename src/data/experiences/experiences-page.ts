@@ -170,8 +170,8 @@ export const experiencesData: Experience[] = [
     },
 
     role: {
-      en: "Frontend Developer",
-      fa: "توسعه‌دهنده فرانت‌اند",
+      en: "Intern Frontend Developer",
+      fa: "کارآموز توسعه‌دهنده فرانت‌اند",
     },
 
     employmentType: {

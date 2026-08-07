@@ -11,33 +11,8 @@ import {
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { socialLinks } from "@/data/social-links/social-links";
 
-const socials = [
-  {
-    key: "github",
-    value: "Hossein-Khedmati",
-    href: "https://github.com/Hossein-Khedmati",
-    icon: GithubIcon,
-  },
-  {
-    key: "linkedin",
-    value: "linkedin.com/in/hossein",
-    href: "https://linkedin.com",
-    icon: LinkedinIcon,
-  },
-  {
-    key: "email",
-    value: "khedmati.hossein1382",
-    href: "mailto:khedmati.hossein1382@gmail.com",
-    icon: EmailIcon,
-  },
-  {
-    key: "telegram",
-    value: "@Hosseinkh0",
-    href: "https://t.me/Hosseinkh0",
-    icon: TelegramIcon,
-  },
-];
 
 const availabilityItems = [
   { key: "freelance" },
@@ -172,7 +147,7 @@ export default function ContactPage() {
               <h3 className="text-xl font-semibold mb-5">{t("contactInfo")}</h3>
 
               <div className="flex flex-col gap-3">
-                {socials.map((item) => {
+                {socialLinks.map((item) => {
                   const Icon = item.icon;
 
                   return (

@@ -117,9 +117,9 @@ export function Header() {
         <div className="flex items-center gap-3">
           <button
             onClick={toggleLocale}
-            className="cursor-pointer rounded-full border-2 border-primary px-3 py-2 text-xs font-mono uppercase transition hover:bg-primary/20 flex gap-2"
+            className="cursor-pointer rounded-full border-2 border-primary px-3 py-2 text-xs font-mono uppercase transition hover:bg-primary/20 flex gap-2 items-center justify-center"
           >
-            {locale === "en" ? "FA " : "EN"}
+            <span className="leading-none">{locale === "en" ? "FA" : "EN"}</span>
             <Image
               src={locale === "en" ? "/iran-flag.webp" : "/english-flag.webp"}
               alt="language logo"

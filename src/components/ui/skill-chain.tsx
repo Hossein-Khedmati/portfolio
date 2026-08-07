@@ -379,7 +379,7 @@ export default function SkillsChain() {
     <div
       ref={containerRef}
       className="relative w-full"
-      style={{ minHeight: isMobile ? "auto" : "180px" }}
+      style={{ minHeight: isMobile ? "auto" : "140px" }}
     >
       {/* SVG layer */}
       <Connectors edges={edgePaths} />
@@ -393,7 +393,7 @@ export default function SkillsChain() {
           gap-16
           md:flex-row
           flex-col
-          py-10 px-6
+          py-5 px-6
         "
         dir="ltr"
       >

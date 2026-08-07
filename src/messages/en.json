@@ -9,6 +9,29 @@
     "navigation": "Navigation",
     "close": "Close"
   },
+  "Footer": {
+    "brand": "Hossein Khedmati",
+    "description": "Frontend developer crafting modern, performant web experiences with clean code and pixel-perfect design.",
+    "status": "Available for new projects",
+    "quickLinks": "Quick Links",
+    "socials": "Connect",
+    "contactTitle": "Get in Touch",
+    "location": "Based in Iran",
+    "rights": "All rights reserved.",
+    "madeWith": "Made with",
+    "madeBy": "by Hossein",
+    "phone": "+989379747509",
+    "links": {
+      "home": "Home",
+      "skills": "Skills",
+      "projects": "Projects",
+      "contact": "Contact",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "telegram": "Telegram",
+      "email": "Email"
+    }
+  },
   "HomePage": {
     "hero": {
       "greeting": "Hi, I'm",
@@ -23,7 +46,8 @@
       "social": {
         "github": "GitHub Profile",
         "linkedin": "LinkedIn Profile",
-        "email": "Email Me"
+        "email": "Email Me",
+        "telegram": "Text Me"
       }
     },
     "about": {
@@ -60,16 +84,39 @@
       "title": "My Career",
       "description": "Job Experiences",
       "cta": "View all Experiences",
-      "what-learned":"What I Learned & Earned",
-      "present":"present",
-      "career-begins":"The Career Path Begins",
-      "journey":"The Journey Continues",
-      "always-learn":"Always learning, always building"
+      "what-learned": "What I Learned & Earned",
+      "present": "present",
+      "career-begins": "The Career Path Begins",
+      "journey": "The Journey Continues",
+      "always-learn": "Always learning, always building"
     },
     "projects": {
       "title": "My Works",
       "description": "Featured Projects",
       "cta": "View all Projects"
+    },
+    "contact": {
+      "description": "Have a project in mind? I'd love to hear about it. Let's turn your ideas into reality together.",
+      "cta": "Get in Touch",
+      "badge": "Let's Collaborate",
+      "heading": {
+        "part1": "Let's build something",
+        "highlight": "amazing",
+        "part2": "together"
+      },
+      "chat": {
+        "name": "Start a Conversation",
+        "replyTime": "I reply within 24 hours",
+        "messages": {
+          "user": "Hi! I have a project idea 💡",
+          "reply": "I'd love to hear it! ✨",
+          "followUp": "Let's build together 🚀"
+        }
+      },
+      "chips": {
+        "fastDelivery": "Fast Delivery",
+        "letsConnect": "Let's connect"
+      }
     }
   },
   "SkillsPage": {
@@ -106,12 +153,12 @@
         "description": "Modern tools and practices for efficient development workflows."
       }
     },
-    "experinces":{
-      "current":"Current Position",
-      "responsibility":"Key Responsibilities",
-      "expertise":"Areas of Expertise",
-      "achievements":"Key Achievements",
-      "stacks":"Tech Stack"
+    "experinces": {
+      "current": "Current Position",
+      "responsibility": "Key Responsibilities",
+      "expertise": "Areas of Expertise",
+      "achievements": "Key Achievements",
+      "stacks": "Tech Stack"
     }
   },
   "ContactPage": {
@@ -149,6 +196,7 @@
   "ProjectsPage": {
     "title": "My Works",
     "subtitle": "Projects I've Built",
-    "description": "A collection of applications, products and experiments where I focused on performance, scalability and beautiful user experiences."
+    "description": "A collection of applications, products and experiments where I focused on performance, scalability and beautiful user experiences.",
+    "demo": "Live Demo"
   }
 }

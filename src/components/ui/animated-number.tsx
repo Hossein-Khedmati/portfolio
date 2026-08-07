@@ -1,6 +1,7 @@
 "use client";
 
 import { animate } from "motion";
+import { useFormatter } from "next-intl";
 import { useEffect, useRef } from "react";
 
 interface AnimatedNumberProps {
@@ -13,6 +14,13 @@ export function AnimatedNumber({
   duration = 1.5,
 }: AnimatedNumberProps) {
   const ref = useRef<HTMLSpanElement>(null);
+  const format = useFormatter();
+
+  const toPersianNumbers = (num: number): string => {
+    return format.number(num, {
+      style: 'decimal',
+    });
+  };
 
   useEffect(() => {
     const controls = animate(0, value, {
@@ -20,7 +28,8 @@ export function AnimatedNumber({
       ease: "easeOut",
       onUpdate(latest) {
         if (ref.current) {
-          ref.current.textContent = Math.round(latest).toString();
+          const rounded = Math.round(latest);
+          ref.current.textContent = toPersianNumbers(rounded);
         }
       },
     });
@@ -28,5 +37,5 @@ export function AnimatedNumber({
     return () => controls.stop();
   }, [value, duration]);
 
-  return <span ref={ref}>0</span>;
+  return <span ref={ref}>۰</span>;
 }

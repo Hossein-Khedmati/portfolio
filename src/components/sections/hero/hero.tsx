@@ -1,11 +1,11 @@
 "use client";
 
 import FaultyTerminal from "@/components/ui/faulty-terminal";
-import { EmailIcon, GithubIcon, LinkedinIcon } from "@/components/icons";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { codeLines } from "./code-lines";
 import { Typewriter } from "@/components/ui/type-writer";
+import { socialLinks } from "@/data/social-links/social-links";
 
 export const HeroSection = () => {
   const t = useTranslations("HomePage.hero");
@@ -54,38 +54,38 @@ export const HeroSection = () => {
             </h3>
 
             <div className="flex flex-row gap-3 md:gap-5">
-              <Link href="/projects" className="p-2 md:p-3 px-4 md:px-6 rounded-lg bg-primary-dark text-sm md:text-base pointer-events-auto transition-colors duration-200 hover:bg-primary-hover">
+              <Link
+                href="/projects"
+                className="p-2 md:p-3 px-4 md:px-6 rounded-lg bg-primary-dark text-sm md:text-base pointer-events-auto transition-colors duration-200 hover:bg-primary-hover"
+              >
                 {t("buttons.viewProjects")}
               </Link>
-              <Link href="#" className="p-2 md:p-3 px-4 md:px-6 rounded-lg border-2 border-border bg-surface transition-colors duration-200 hover:bg-surface-hover text-sm md:text-base pointer-events-auto">
+              <Link
+                href="#"
+                className="p-2 md:p-3 px-4 md:px-6 rounded-lg border-2 border-border bg-surface transition-colors duration-200 hover:bg-surface-hover text-sm md:text-base pointer-events-auto"
+              >
                 {t("buttons.downloadResume")}
               </Link>
             </div>
 
+            {/* Social Links - Dynamically rendered from data */}
             <div className="flex gap-3 md:gap-5">
-              <Link
-                href="#"
-                aria-label={t("social.github")}
-                className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto shadow-md shadow-primary-dark/70"
-              >
-                <GithubIcon size={24} />
-              </Link>
-              <Link
-                href="#"
-                aria-label={t("social.linkedin")}
-                className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto shadow-md shadow-primary-dark/70"
-              >
-                <LinkedinIcon size={16} />
-              </Link>
-              <Link
-                href="#"
-                aria-label={t("social.email")}
-                className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto shadow-md shadow-primary-dark/70"
-              >
-                <EmailIcon size={24} />
-              </Link>
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <Link
+                    key={social.key}
+                    href={social.href}
+                    aria-label={t(`social.${social.key}`)}
+                    className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto shadow-md shadow-primary-dark/70"
+                  >
+                    <Icon size={social.iconSize} />
+                  </Link>
+                );
+              })}
             </div>
           </div>
+
           <div className="flex-1 h-fit code-block max-w-lg mx-auto lg:mx-0 bg-surface border border-primary-dark max-md:mx-0">
             <div className="code-header">
               <div className="dot dot-red" />
