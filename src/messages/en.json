@@ -184,13 +184,45 @@
       "details": "Project Details",
       "detailsPlaceholder": "Tell me about your project...",
       "submit": "Send Message",
-      "footer": "Great products start with great conversations."
+      "footer": "Great products start with great conversations.",
+      "sending": "Sending...",
+      "sent": "Message Sent!",
+      "error": "Try Again",
+      "errorMessage": "Failed to send message. Please try again later."
     },
     "socials": {
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "email": "Email",
       "telegram": "Telegram"
+    },
+    "rateLimitRemaining": "You can send {count} more message(s) in the next minute",
+    "validation": {
+      "name": {
+        "required": "Name is required",
+        "minLength": "Name must be at least 2 characters",
+        "maxLength": "Name must be less than 50 characters",
+        "invalid": "Name contains invalid characters"
+      },
+      "email": {
+        "required": "Email is required",
+        "invalid": "Please enter a valid email address"
+      },
+      "subject": {
+        "required": "Subject is required",
+        "minLength": "Subject must be at least 3 characters",
+        "maxLength": "Subject must be less than 100 characters"
+      },
+      "message": {
+        "required": "Message is required",
+        "minLength": "Message must be at least 10 characters",
+        "maxLength": "Message must be less than 1000 characters"
+      }
+    },
+
+    "rateLimit": {
+      "error": "Daily limit reached. Please try again tomorrow.",
+      "blocked": "You have been temporarily blocked due to suspicious activity."
     }
   },
   "ProjectsPage": {

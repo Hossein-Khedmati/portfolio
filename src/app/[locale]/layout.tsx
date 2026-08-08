@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
+import {  Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
@@ -7,6 +7,8 @@ import { routing } from "@/i18n/routing";
 import { Header } from "@/components/ui/header";
 import CustomCursor from "@/components/ui/custom-cursor";
 import Footer from "@/components/ui/footer";
+import { Suspense } from "react";
+import Loading from "@/components/ui/loading";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic", "latin"],
@@ -100,10 +102,12 @@ export default async function RootLayout({ children, params }: Props) {
     <html lang={locale} dir={dir} className="h-full antialiased">
       <body className={`min-h-full flex flex-col ${vazirmatn.className}`}>
         <NextIntlClientProvider>
+          <Suspense fallback={<Loading/>}>
           <Header />
           {/* <CustomCursor /> */}
           {children}
           <Footer/>
+          </Suspense>
         </NextIntlClientProvider>
       </body>
     </html>

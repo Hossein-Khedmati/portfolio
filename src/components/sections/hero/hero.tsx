@@ -62,7 +62,7 @@ export const HeroSection = () => {
               </Link>
               <Link
                 href="#"
-                className="p-2 md:p-3 px-4 md:px-6 rounded-lg border-2 border-border bg-surface transition-colors duration-200 hover:bg-surface-hover text-sm md:text-base pointer-events-auto"
+                className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg bg-surface text-sm md:text-base pointer-events-auto hover:bg-surface-hover active:bg-surface-active border border-border transition-colors duration-300"
               >
                 {t("buttons.downloadResume")}
               </Link>
@@ -77,7 +77,7 @@ export const HeroSection = () => {
                     key={social.key}
                     href={social.href}
                     aria-label={t(`social.${social.key}`)}
-                    className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto shadow-md shadow-primary-dark/70"
+                    className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto "
                   >
                     <Icon size={social.iconSize} />
                   </Link>
