@@ -11,7 +11,7 @@ interface CssIconProps {
 
 const CssIcon = ({
   size = 24,
-  color = "",
+  color = "#0890f1",
   className = "",
   style,
   onClick,

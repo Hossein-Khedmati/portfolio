@@ -1,4 +1,37 @@
 {
+  "Menu": {
+    "home": "Home",
+    "skills": "Skills & Experiences",
+    "projects": "Projects",
+    "contact": "Contact",
+    "logo": "PORTFOLIO",
+    "letsTalk": "Let's Talk",
+    "navigation": "Navigation",
+    "close": "Close"
+  },
+  "Footer": {
+    "brand": "Hossein Khedmati",
+    "description": "Frontend developer crafting modern, performant web experiences with clean code and pixel-perfect design.",
+    "status": "Available for new projects",
+    "quickLinks": "Quick Links",
+    "socials": "Connect",
+    "contactTitle": "Get in Touch",
+    "location": "Based in Iran",
+    "rights": "All rights reserved.",
+    "madeWith": "Made with",
+    "madeBy": "by Hossein",
+    "phone": "+989379747509",
+    "links": {
+      "home": "Home",
+      "skills": "Skills",
+      "projects": "Projects",
+      "contact": "Contact",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "telegram": "Telegram",
+      "email": "Email"
+    }
+  },
   "HomePage": {
     "hero": {
       "greeting": "Hi, I'm",
@@ -13,7 +46,8 @@
       "social": {
         "github": "GitHub Profile",
         "linkedin": "LinkedIn Profile",
-        "email": "Email Me"
+        "email": "Email Me",
+        "telegram": "Text Me"
       }
     },
     "about": {
@@ -22,15 +56,15 @@
       "description": "I'm a passionate Frontend Developer focused on building scalable, high-performance, and visually engaging web applications. I enjoy turning complex ideas into intuitive user experiences with modern technologies like React, Next.js, and TypeScript. I'm always eager to learn, explore new tools, and refine my skills. Currently, I'm working at Etmita UG, where I continue to grow as a developer by building real-world products and embracing new challenges every day.",
       "stats": [
         {
-          "value": "+2",
+          "value": "2",
           "label": "Years Experience"
         },
         {
-          "value": "+15",
+          "value": "15",
           "label": "Projects Built"
         },
         {
-          "value": "+15",
+          "value": "15",
           "label": "Tools & Technologies"
         },
         {
@@ -40,6 +74,161 @@
       ],
       "fullName": "Hossein Khedmati",
       "role": "Frontend Developer"
+    },
+    "skills": {
+      "title": "My Journey",
+      "description": "Skills & Technologies",
+      "cta": "View all Skills"
+    },
+    "experiences": {
+      "title": "My Career",
+      "description": "Job Experiences",
+      "cta": "View all Experiences",
+      "what-learned": "What I Learned & Earned",
+      "present": "present",
+      "career-begins": "The Career Path Begins",
+      "journey": "The Journey Continues",
+      "always-learn": "Always learning, always building"
+    },
+    "projects": {
+      "title": "My Works",
+      "description": "Featured Projects",
+      "cta": "View all Projects"
+    },
+    "contact": {
+      "description": "Have a project in mind? I'd love to hear about it. Let's turn your ideas into reality together.",
+      "cta": "Get in Touch",
+      "badge": "Let's Collaborate",
+      "heading": {
+        "part1": "Let's build something",
+        "highlight": "amazing",
+        "part2": "together"
+      },
+      "chat": {
+        "name": "Start a Conversation",
+        "replyTime": "I reply within 24 hours",
+        "messages": {
+          "user": "Hi! I have a project idea 💡",
+          "reply": "I'd love to hear it! ✨",
+          "followUp": "Let's build together 🚀"
+        }
+      },
+      "chips": {
+        "fastDelivery": "Fast Delivery",
+        "letsConnect": "Let's connect"
+      }
     }
+  },
+  "SkillsPage": {
+    "title": "My Skills",
+    "subtitle": "Technologies I use to build products",
+    "description": "A collection of tools, technologies and practices I use to create scalable and beautiful digital experiences.",
+    "tabs": {
+      "skills": "Skills",
+      "experiences": "Experiences"
+    },
+    "categories": {
+      "frontend": {
+        "title": "Frontend Development",
+        "description": "Building scalable, performant and modern web applications with React ecosystem."
+      },
+      "ui": {
+        "title": "UI Engineering",
+        "description": "Creating polished interfaces with modern design systems and smooth experiences."
+      },
+      "state": {
+        "title": "State & Data Management",
+        "description": "Managing complex application states and handling scalable data flows."
+      },
+      "backend": {
+        "title": "Backend & Database",
+        "description": "Building full-stack applications with modern backend services."
+      },
+      "testing": {
+        "title": "Testing & Quality",
+        "description": "Improving reliability through testing and development standards."
+      },
+      "tools": {
+        "title": "Tools & Workflow",
+        "description": "Modern tools and practices for efficient development workflows."
+      }
+    },
+    "experinces": {
+      "current": "Current Position",
+      "responsibility": "Key Responsibilities",
+      "expertise": "Areas of Expertise",
+      "achievements": "Key Achievements",
+      "stacks": "Tech Stack"
+    }
+  },
+  "ContactPage": {
+    "title": "Get In Touch",
+    "subtitle": "Let's build something",
+    "subtitleHighlight": "exceptional.",
+    "description": "Have a project idea, collaboration opportunity, or just want to connect? I would love to hear from you.",
+    "contactInfo": "Contact Information",
+    "availability": "Available For Work",
+    "availabilityItems": {
+      "freelance": "Freelance Projects",
+      "fulltime": "Full-time Opportunities",
+      "remote": "Remote Collaboration"
+    },
+    "replyTime": "Usually replies within 24 hours.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "Project discussion",
+      "details": "Project Details",
+      "detailsPlaceholder": "Tell me about your project...",
+      "submit": "Send Message",
+      "footer": "Great products start with great conversations.",
+      "sending": "Sending...",
+      "sent": "Message Sent!",
+      "error": "Try Again",
+      "errorMessage": "Failed to send message. Please try again later."
+    },
+    "socials": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email",
+      "telegram": "Telegram"
+    },
+    "rateLimitRemaining": "You can send {count} more message(s) in the next minute",
+    "validation": {
+      "name": {
+        "required": "Name is required",
+        "minLength": "Name must be at least 2 characters",
+        "maxLength": "Name must be less than 50 characters",
+        "invalid": "Name contains invalid characters"
+      },
+      "email": {
+        "required": "Email is required",
+        "invalid": "Please enter a valid email address"
+      },
+      "subject": {
+        "required": "Subject is required",
+        "minLength": "Subject must be at least 3 characters",
+        "maxLength": "Subject must be less than 100 characters"
+      },
+      "message": {
+        "required": "Message is required",
+        "minLength": "Message must be at least 10 characters",
+        "maxLength": "Message must be less than 1000 characters"
+      }
+    },
+
+    "rateLimit": {
+      "error": "Daily limit reached. Please try again tomorrow.",
+      "blocked": "You have been temporarily blocked due to suspicious activity."
+    }
+  },
+  "ProjectsPage": {
+    "title": "My Works",
+    "subtitle": "Projects I've Built",
+    "description": "A collection of applications, products and experiments where I focused on performance, scalability and beautiful user experiences.",
+    "demo": "Live Demo"
   }
 }

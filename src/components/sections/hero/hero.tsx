@@ -1,16 +1,14 @@
+"use client";
+
 import FaultyTerminal from "@/components/ui/faulty-terminal";
-import {
-  EmailIcon,
-  GithubIcon,
-  LinkedinIcon,
-} from "@/components/icons";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { codeLines } from "./code-lines";
+import { Typewriter } from "@/components/ui/type-writer";
+import { socialLinks } from "@/data/social-links/social-links";
 
 export const HeroSection = () => {
   const t = useTranslations("HomePage.hero");
-  
 
   return (
     <div className="w-full relative overflow-hidden py-10 h-fit">
@@ -47,45 +45,47 @@ export const HeroSection = () => {
               <span className="text-gradient">{t("lastName")}</span>
             </div>
 
-            <h2 className="text-xl md:text-3xl font-medium">{t("role")}</h2>
+            <h2 className="text-xl md:text-3xl font-medium">
+              <Typewriter text={t("role")} />
+            </h2>
 
             <h3 className="text-sm md:text-lg font-medium text-neutral-500 w-full md:w-2/3">
               {t("description")}
             </h3>
 
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-5">
-              <button className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg bg-primary-dark text-sm md:text-base pointer-events-auto">
+            <div className="flex flex-row gap-3 md:gap-5">
+              <Link
+                href="/projects"
+                className="p-2 md:p-3 px-4 md:px-6 rounded-lg bg-primary-dark text-sm md:text-base pointer-events-auto transition-colors duration-200 hover:bg-primary-hover"
+              >
                 {t("buttons.viewProjects")}
-              </button>
-              <button className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg border border-neutral-500 bg-neutral-50 text-sm md:text-base pointer-events-auto">
+              </Link>
+              <Link
+                href="#"
+                className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg bg-surface text-sm md:text-base pointer-events-auto hover:bg-surface-hover active:bg-surface-active border border-border transition-colors duration-300"
+              >
                 {t("buttons.downloadResume")}
-              </button>
+              </Link>
             </div>
 
+            {/* Social Links - Dynamically rendered from data */}
             <div className="flex gap-3 md:gap-5">
-              <Link
-                href="#"
-                aria-label={t("social.github")}
-                className="size-8 md:size-10 w-fit rounded-full p-1 bg-neutral-50 flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto"
-              >
-                <GithubIcon size={24} />
-              </Link>
-              <Link
-                href="#"
-                aria-label={t("social.linkedin")}
-                className="size-8 md:size-10 w-fit rounded-full p-1 bg-neutral-50 flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto "
-              >
-                <LinkedinIcon size={16} />
-              </Link>
-              <Link
-                href="#"
-                aria-label={t("social.email")}
-                className="size-8 md:size-10 w-fit rounded-full p-1 bg-neutral-50 flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto"
-              >
-                <EmailIcon size={24} />
-              </Link>
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <Link
+                    key={social.key}
+                    href={social.href}
+                    aria-label={t(`social.${social.key}`)}
+                    className="size-8 md:size-12 rounded-full p-1 bg-surface flex items-center justify-center overflow-hidden transition-all duration-300 hover:bg-primary-dark hover:scale-110 pointer-events-auto "
+                  >
+                    <Icon size={social.iconSize} />
+                  </Link>
+                );
+              })}
             </div>
           </div>
+
           <div className="flex-1 h-fit code-block max-w-lg mx-auto lg:mx-0 bg-surface border border-primary-dark max-md:mx-0">
             <div className="code-header">
               <div className="dot dot-red" />
@@ -93,7 +93,7 @@ export const HeroSection = () => {
               <div className="dot dot-green" />
             </div>
             <div
-              className="code-content text-sm md:text-xl!"
+              className="code-content max-sm:p-4! text-sm md:text-xl!"
               style={{ direction: "ltr", textAlign: "left" }}
             >
               {codeLines.map((line) => (

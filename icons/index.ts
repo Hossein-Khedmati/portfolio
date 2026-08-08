@@ -1,0 +1,13 @@
+export { default as TsIcon } from "./TsIcon";
+export { default as TailwindIcon } from "./TailwindIcon";
+export { default as ReactIcon } from "./ReactIcon";
+export { default as NextIcon } from "./NextIcon";
+export { default as LoopIcon } from "./LoopIcon";
+export { default as LogoIcon } from "./LogoIcon";
+export { default as LinkedinIcon } from "./LinkedinIcon";
+export { default as JsIcon } from "./JsIcon";
+export { default as HtmlIcon } from "./HtmlIcon";
+export { default as HeartIcon } from "./HeartIcon";
+export { default as GithubIcon } from "./GithubIcon";
+export { default as EmailIcon } from "./EmailIcon";
+export { default as CssIcon } from "./CssIcon";
