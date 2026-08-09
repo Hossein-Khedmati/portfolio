@@ -482,7 +482,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   return (
     <div
       ref={wrapRef}
-      className={`relative touch-none ${className}`.trim()}
+      className={`relative touch-none overflow-hidden ${className}`.trim()}
       style={
         {
           perspective: "500px",
@@ -503,13 +503,13 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       )}
       <div
         ref={shellRef}
-        className="relative z-1 group max-sm:flex justify-center"
+        className="relative z-1 group max-sm:flex justify-center "
       >
         <section
-          className="grid relative overflow-hidden max-sm:max-w-[90%]"
+          className="grid relative overflow-hidden"
           style={{
             height: "80svh",
-            maxHeight: "540px",
+            maxHeight: "460px",
             aspectRatio: "0.718",
             borderRadius: cardRadius,
             backgroundBlendMode: "color-dodge, normal, normal, normal",

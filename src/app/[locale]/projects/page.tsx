@@ -69,7 +69,7 @@ max-w-2xl
         </motion.div>
       </section>
 
-      <section className="pb-12">
+      <section>
         <ProjectsSection projects={projectsData} />
       </section>
     </main>

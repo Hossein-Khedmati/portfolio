@@ -7,7 +7,7 @@ import {
 
 export const socialLinks = [
   {
-    href: "https://github.com/yourusername",
+    href: "https://github.com/Hossein-Khedmati",
     key: "github",
     value: "Hossein-Khedmati",
     icon: GithubIcon,
@@ -15,7 +15,7 @@ export const socialLinks = [
     ariaLabel: "GitHub",
   },
   {
-    href: "https://linkedin.com/in/yourusername",
+    href: "https://www.linkedin.com/in/hossein-khedmati-57b257375/",
     key: "linkedin",
     value: "linkedin.com/in/hossein",
     icon: LinkedinIcon,
@@ -23,7 +23,7 @@ export const socialLinks = [
     ariaLabel: "LinkedIn",
   },
   {
-    href: "mailto:contact@yoursite.com",
+    href: "mailto:khedmati.hossein1382@gmail.com",
     key: "email",
     value: "khedmati.hossein1382",
     icon: EmailIcon,
@@ -31,7 +31,7 @@ export const socialLinks = [
     ariaLabel: "Email",
   },
   {
-    href: "https://t.me/yourusername",
+    href: "https://t.me/Hosseinkh0",
     key: "telegram",
     value: "@Hosseinkh0",
     icon: TelegramIcon,

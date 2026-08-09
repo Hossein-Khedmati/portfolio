@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { LogoIcon } from "../icons";
+import { HeartIcon, LogoIcon } from "../icons";
 import { socialLinks } from "@/data/social-links/social-links";
 import { navLinks } from "@/data/navigations/navigation";
 
@@ -99,7 +99,7 @@ export default function Footer() {
 
       {/* Divider */}
       <div className="container">
-        <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="h-px bg-linear-to-r from-transparent via-border to-transparent" />
       </div>
 
       {/* Copyright */}
@@ -111,7 +111,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-1.5 text-xs text-neutral-500">
             <span>{t("madeWith")}</span>
-            <span className="inline-block animate-pulse text-red-400">♥</span>
+            <span className="inline-block animate-ping text-red-500"><HeartIcon size={12} className="mx-1"/></span>
             <span>{t("madeBy")}</span>
           </div>
         </div>
