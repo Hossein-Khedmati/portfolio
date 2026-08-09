@@ -146,7 +146,7 @@ function ProjectCard({
             className="group/github inline-flex items-center justify-center rounded-lg border border-border-dark bg-surface-hover text-white transition-all active:scale-95 size-10"
             aria-label="View Github Repository"
           >
-            <GithubIcon className="text-white transition-all duration-300 group-hover/github:text-primary group-hover/github:scale-105" />
+            <GithubIcon className="text-white transition-all duration-300 group-hover/github:text-primary-dark group-hover/github:scale-105" />
           </Link>
         </div>
       </div>

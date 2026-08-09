@@ -116,12 +116,10 @@ export const experiencesData: Experience[] = [
 
     achievements: {
       en: [
-        "Streamlined real-time vehicle tracking rendering, preventing unnecessary re-renders during high-frequency map updates.",
         "Elevated code reliability across primary modules by introducing strict TypeScript practices and Jest test suites.",
         "Accelerated UI development cycles across the engineering team by publishing structured Storybook components.",
       ],
       fa: [
-        "بهینه‌سازی کارایی رندرینگ نقشه مانیتورینگ زنده در هنگام دریافت حجم بالای داده‌های لحظه‌ای.",
         "افزایش پایداری بخش‌های کلیدی پروژه از طریق استقرار قواعد سخت‌گیرانه TypeScript و تست‌های Jest.",
         "تسریع روند توسعه UI در تیم از طریق ایزوله‌سازی و پیاده‌سازی کامپوننت‌های Storybook.",
       ],

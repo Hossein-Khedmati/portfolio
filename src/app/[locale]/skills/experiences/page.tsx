@@ -6,6 +6,7 @@ import {
 } from "@/data/experiences/experiences-page";
 import { Locale } from "@/config/locales";
 import { useLocale, useTranslations } from "next-intl";
+import { Metadata } from "next";
 
 export default function ExperiencesPage() {
   const locale = (useLocale() as Locale) ?? "en";
@@ -146,7 +147,7 @@ function ExperienceCard({ experience, locale, cardVariants }: CardProps) {
 
       {/* ── Achievements ───────────────────────────────────── */}
       {experience.achievements[locale]?.length > 0 && (
-        <div className="mb-6 rounded-xl border border-primary-dark/20 bg-primary/30 p-4 md:p-5">
+        <div className="mb-6 rounded-xl border border-primary-dark/30 bg-surface-hover/30 p-4 md:p-5">
           <SectionTitle title={tExperinces("achievements")} />
           <ul className="mt-3 grid grid-cols-1 gap-2.5">
             {tArr(experience.achievements).map((item, idx) => (

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import {  Vazirmatn } from "next/font/google";
+import { Vazirmatn } from "next/font/google";
 import "./globals.css";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
@@ -18,7 +18,7 @@ const vazirmatn = Vazirmatn({
 // ✅ IMPROVED: Better metadata with template and social tags
 export const metadata: Metadata = {
   title: {
-    template: "%s | Hossein Khedmati",
+    template: '%s | Hossein Khedmati',
     default: "Hossein Khedmati - Portfolio",
   },
   description: "Hossein Khedmati - Portfolio",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Hossein Khedmati" }],
   creator: "Hossein Khedmati",
   publisher: "Hossein Khedmati",
-  
+
   // Open Graph for social sharing
   openGraph: {
     title: "Hossein Khedmati - Portfolio",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  
+
   // Twitter Card
   twitter: {
     card: "summary_large_image",
@@ -53,18 +53,18 @@ export const metadata: Metadata = {
     images: ["https://yourdomain.com"],
     creator: "@yourtwitterhandle",
   },
-  
+
   // Icons
   icons: {
     icon: "/logo-android.png",
     apple: "/logo-apple.png",
   },
-  
+
   // ✅ CRITICAL: Canonical URL (important for SEO)
   alternates: {
     canonical: "https://yourdomain.com",
   },
-  
+
   // Robots meta (optional, but good practice)
   robots: {
     index: true,
@@ -102,11 +102,11 @@ export default async function RootLayout({ children, params }: Props) {
     <html lang={locale} dir={dir} className="h-full antialiased">
       <body className={`min-h-full flex flex-col ${vazirmatn.className}`}>
         <NextIntlClientProvider>
-          <Suspense fallback={<Loading/>}>
-          <Header />
-          {/* <CustomCursor /> */}
-          {children}
-          <Footer/>
+          <Suspense fallback={<Loading />}>
+            <Header />
+            {/* <CustomCursor /> */}
+            {children}
+            <Footer />
           </Suspense>
         </NextIntlClientProvider>
       </body>

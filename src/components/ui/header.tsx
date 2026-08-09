@@ -8,25 +8,8 @@ import { LogoIcon } from "@/components/icons";
 import { AnimatePresence, motion } from "motion/react";
 import clsx from "clsx";
 import Image from "next/image";
+import { navLinks } from "@/data/navigations/navigation";
 
-const navLinks = [
-  {
-    href: "/",
-    key: "home",
-  },
-  {
-    href: "/skills",
-    key: "skills",
-  },
-  {
-    href: "/projects",
-    key: "projects",
-  },
-  {
-    href: "/contact",
-    key: "contact",
-  },
-];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -245,14 +228,6 @@ export function Header() {
                     </motion.div>
                   );
                 })}
-
-                <Link
-                  href="/contact"
-                  onClick={() => setIsOpen(false)}
-                  className="mt-auto rounded-xl bg-primary-dark py-4 text-center font-bold text-foreground transition hover:scale-[1.02]"
-                >
-                  {t("letsTalk")}
-                </Link>
               </nav>
             </motion.aside>
           </>
