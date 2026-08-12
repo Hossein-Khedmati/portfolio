@@ -1,10 +1,9 @@
 "use client";
 
-import ProjectsSection from "@/components/ui/projects";
+import ProjectsSection from "@/components/shared/projects";
 import { projectsData } from "@/data/projects/projects";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-
 
 export default function ProjectsPage() {
   const t = useTranslations("ProjectsPage");

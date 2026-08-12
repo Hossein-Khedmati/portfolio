@@ -13,14 +13,12 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-border-light bg-surface mt-10">
-      <div className="container py-12">
-        <div className="flex flex-col md:flex-row gap-10 md:gap-6">
-          {/* Brand */}
-          <div className="flex flex-col gap-4 flex-2">
-            {/* Logo */}
+      <div className="container py-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+          <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
             <Link href="/" className="flex items-center gap-2.5 w-fit group">
               <div className="relative size-12 rounded-lg flex items-center justify-center overflow-hidden group-hover:opacity-70 transition-all duration-200">
-                  <LogoIcon size={40}/>
+                <LogoIcon size={40}/>
               </div>
               <span className="text-xl font-bold text-foreground group-hover:opacity-70 transition-all duration-200">
                 {t("brand")}
@@ -31,7 +29,6 @@ export default function Footer() {
               {t("description")}
             </p>
 
-            {/* Status indicator */}
             <div className="flex items-center gap-2 w-fit">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75" />
@@ -41,8 +38,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="flex flex-col gap-4 flex-1">
+          <div className="flex flex-col gap-4">
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
               {t("quickLinks")}
             </h4>
@@ -59,8 +55,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Socials */}
-          <div className="flex flex-col gap-4 flex-1">
+          <div className="flex flex-col gap-4">
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
               {t("socials")}
             </h4>
@@ -79,8 +74,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* Contact Info */}
-          <div className="flex flex-col gap-4 flex-1">
+          <div className="col-span-2 md:col-span-1 flex flex-col gap-4">
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
               {t("contactTitle")}
             </h4>
@@ -97,12 +91,10 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Divider */}
       <div className="container">
         <div className="h-px bg-linear-to-r from-transparent via-border to-transparent" />
       </div>
 
-      {/* Copyright */}
       <div className="container py-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-neutral-500 text-center sm:text-start">
@@ -111,7 +103,9 @@ export default function Footer() {
 
           <div className="flex items-center gap-1.5 text-xs text-neutral-500">
             <span>{t("madeWith")}</span>
-            <span className="inline-block animate-ping text-red-500"><HeartIcon size={12} className="mx-1"/></span>
+            <span className="inline-block animate-ping text-red-500">
+              <HeartIcon size={12} className="mx-1"/>
+            </span>
             <span>{t("madeBy")}</span>
           </div>
         </div>

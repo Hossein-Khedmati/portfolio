@@ -1,87 +1,80 @@
 @import "tailwindcss";
 
 :root {
-  /* Light Mode Colors */
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #13151f;
+  --foreground: #ededed;
 
-  /* Primary Colors */
-  --primary: #4f46e5; /* Indigo 600 */
-  --primary-light: #818cf8; /* Indigo 400 */
-  --primary-dark: #3730a3; /* Indigo 800 */
-  --primary-hover: #4338ca; /* Indigo 700 */
+  /* Primary Colors - Dark Mode */
+  --primary: #818cf8; /* Indigo 400 */
+  --primary-light: #a5b4fc; /* Indigo 300 */
+  --primary-dark: #4f46e5; /* Indigo 600 */
+  --primary-hover: #6366f1; /* Indigo 500 */
   --primary-background-image: #818df811;
 
-  /* Secondary Colors */
-  --secondary: #7c3aed; /* Purple 600 */
-  --secondary-light: #a78bfa; /* Purple 400 */
-  --secondary-dark: #5b21b6; /* Purple 800 */
+  /* Secondary Colors - Dark Mode */
+  --secondary: #a78bfa; /* Purple 400 */
+  --secondary-light: #c4b5fd; /* Purple 300 */
+  --secondary-dark: #7c3aed; /* Purple 600 */
 
-  /* Accent Colors */
-  --accent: #06b6d4; /* Cyan 500 */
-  --accent-light: #22d3ee; /* Cyan 400 */
-  --accent-dark: #0891b2; /* Cyan 600 */
+  /* Accent Colors - Dark Mode */
+  --accent: #22d3ee; /* Cyan 400 */
+  --accent-light: #67e8f9; /* Cyan 300 */
+  --accent-dark: #06b6d4; /* Cyan 500 */
 
-  /* Status Colors */
-  --success: #22c55e; /* Green 500 */
-  --warning: #eab308; /* Yellow 500 */
-  --error: #ef4444; /* Red 500 */
-  --info: #3b82f6; /* Blue 500 */
+  /* Status Colors - Dark Mode (brighter for better visibility) */
+  --success: #4ade80; /* Green 400 */
+  --warning: #fde047; /* Yellow 400 */
+  --error: #f87171; /* Red 400 */
+  --info: #60a5fa; /* Blue 400 */
 
-  /* Neutral Colors */
-  --neutral-50: #f8fafc;
-  --neutral-100: #f1f5f9;
-  --neutral-200: #e2e8f0;
-  --neutral-300: #cbd5e1;
-  --neutral-400: #94a3b8;
-  --neutral-500: #64748b;
-  --neutral-600: #475569;
-  --neutral-700: #334155;
-  --neutral-800: #1e293b;
-  --neutral-900: #0f172a;
-  --neutral-950: #020617;
+  /* Neutral Colors - Dark Mode */
+  --neutral-50: #0f172a;
+  --neutral-100: #1e293b;
+  --neutral-200: #334155;
+  --neutral-300: #475569;
+  --neutral-400: #64748b;
+  --neutral-500: #94a3b8;
+  --neutral-600: #cbd5e1;
+  --neutral-700: #e2e8f0;
+  --neutral-800: #f1f5f9;
+  --neutral-900: #f8fafc;
+  --neutral-950: #ffffff;
 
-  /* Surface Colors */
-  --surface: #ffffff;
-  --surface-hover: #f1f5f9;
-  --surface-active: #e2e8f0;
+  /* Surface Colors - Dark Mode */
+  --surface: #171a29;
+  --surface-hover: #334155;
+  --surface-active: #475569;
 
-  /* Border Colors */
-  --border: #e2e8f0;
-  --border-light: #f1f5f9;
-  --border-dark: #cbd5e1;
+  /* Border Colors - Dark Mode */
+  --border: #334155;
+  --border-light: #1e293b;
+  --border-dark: #475569;
 }
 
-/* Dark Mode Colors */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #13151f;
     --foreground: #ededed;
 
-    /* Primary Colors - Dark Mode */
-    --primary: #818cf8; /* Indigo 400 */
-    --primary-light: #a5b4fc; /* Indigo 300 */
-    --primary-dark: #4f46e5; /* Indigo 600 */
-    --primary-hover: #6366f1; /* Indigo 500 */
+    --primary: #818cf8; 
+    --primary-light: #a5b4fc; 
+    --primary-dark: #4f46e5; 
+    --primary-hover: #6366f1; 
     --primary-background-image: #818df811;
 
-    /* Secondary Colors - Dark Mode */
-    --secondary: #a78bfa; /* Purple 400 */
-    --secondary-light: #c4b5fd; /* Purple 300 */
-    --secondary-dark: #7c3aed; /* Purple 600 */
+    --secondary: #a78bfa; 
+    --secondary-light: #c4b5fd;
+    --secondary-dark: #7c3aed;
 
-    /* Accent Colors - Dark Mode */
-    --accent: #22d3ee; /* Cyan 400 */
-    --accent-light: #67e8f9; /* Cyan 300 */
-    --accent-dark: #06b6d4; /* Cyan 500 */
+    --accent: #22d3ee;
+    --accent-light: #67e8f9;
+    --accent-dark: #06b6d4;
 
-    /* Status Colors - Dark Mode (brighter for better visibility) */
-    --success: #4ade80; /* Green 400 */
-    --warning: #fde047; /* Yellow 400 */
-    --error: #f87171; /* Red 400 */
-    --info: #60a5fa; /* Blue 400 */
+    --success: #4ade80; 
+    --warning: #fde047; 
+    --error: #f87171; 
+    --info: #60a5fa; 
 
-    /* Neutral Colors - Dark Mode */
     --neutral-50: #0f172a;
     --neutral-100: #1e293b;
     --neutral-200: #334155;
@@ -94,48 +87,41 @@
     --neutral-900: #f8fafc;
     --neutral-950: #ffffff;
 
-    /* Surface Colors - Dark Mode */
     --surface: #171a29;
     --surface-hover: #334155;
     --surface-active: #475569;
 
-    /* Border Colors - Dark Mode */
     --border: #334155;
     --border-light: #1e293b;
     --border-dark: #475569;
   }
-}
+} */
 
 /* Theme Configuration for Tailwind v4 */
 @theme inline {
-  /* Background & Foreground */
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Primary */
   --color-primary: var(--primary);
   --color-primary-light: var(--primary-light);
   --color-primary-dark: var(--primary-dark);
   --color-primary-hover: var(--primary-hover);
   --color-primary-background-image: var(--primary-background-image);
 
-  /* Secondary */
   --color-secondary: var(--secondary);
   --color-secondary-light: var(--secondary-light);
   --color-secondary-dark: var(--secondary-dark);
 
-  /* Accent */
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-accent-dark: var(--accent-dark);
 
-  /* Status */
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-error: var(--error);
   --color-info: var(--info);
 
-  /* Neutral */
   --color-neutral-50: var(--neutral-50);
   --color-neutral-100: var(--neutral-100);
   --color-neutral-200: var(--neutral-200);
@@ -148,22 +134,19 @@
   --color-neutral-900: var(--neutral-900);
   --color-neutral-950: var(--neutral-950);
 
-  /* Surface */
   --color-surface: var(--surface);
   --color-surface-hover: var(--surface-hover);
   --color-surface-active: var(--surface-active);
 
-  /* Border */
   --color-border: var(--border);
   --color-border-light: var(--border-light);
   --color-border-dark: var(--border-dark);
 
-  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-/* Body Styles */
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -180,7 +163,6 @@ body {
   background-position: -1px -1px;
 }
 
-/* Container */
 .container {
   max-width: 1440px;
   margin: 0 auto;
@@ -188,7 +170,6 @@ body {
   padding-left: 20px;
 }
 
-/* For max-md screens (768px and below) */
 @media (max-width: 1024px) {
   .container {
     padding-right: 30px;

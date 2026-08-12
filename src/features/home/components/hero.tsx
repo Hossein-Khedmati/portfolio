@@ -1,10 +1,10 @@
 "use client";
 
-import FaultyTerminal from "@/components/ui/faulty-terminal";
+import FaultyTerminal from "@/components/shared/faulty-terminal";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { codeLines } from "./code-lines";
-import { Typewriter } from "@/components/ui/type-writer";
+import { codeLines } from "@/components/shared/code-lines";
+import { Typewriter } from "@/components/shared/type-writer";
 import { socialLinks } from "@/data/social-links/social-links";
 
 export const HeroSection = () => {
@@ -61,14 +61,14 @@ export const HeroSection = () => {
                 {t("buttons.viewProjects")}
               </Link>
               <Link
-                href="#"
+                href="/HosseinKhedmatiResume.pdf"
+                download="HosseinKhedmatiResume.pdf"
                 className="p-2 md:p-3 px-4 md:px-6 w-fit rounded-lg bg-surface text-sm md:text-base pointer-events-auto hover:bg-surface-hover active:bg-surface-active border border-border transition-colors duration-300"
               >
                 {t("buttons.downloadResume")}
               </Link>
             </div>
 
-            {/* Social Links - Dynamically rendered from data */}
             <div className="flex gap-3 md:gap-5">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
@@ -98,8 +98,9 @@ export const HeroSection = () => {
             >
               {codeLines.map((line) => (
                 <div key={line.num} className="flex items-start">
+              
                   <span className="code-line-num">{line.num}</span>
-                  <span>{line.content}</span>
+                  <span>{line.content} </span>
                 </div>
               ))}
             </div>

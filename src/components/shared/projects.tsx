@@ -97,7 +97,7 @@ function ProjectCard({
           </h3>
         </div>
 
-        <p className="text-base text-neutral-400 leading-relaxed line-clamp-2">
+        <p className="text-base text-neutral-400 leading-relaxed line-clamp-4">
           {description}
         </p>
 
