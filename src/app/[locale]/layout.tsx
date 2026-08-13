@@ -4,21 +4,26 @@ import "./globals.css";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Header } from "@/components/ui/header";
-import CustomCursor from "@/components/ui/custom-cursor";
-import Footer from "@/components/ui/footer";
+import { Header } from "@/components/layout/header";
+import CustomCursor from "@/components/shared/custom-cursor";
+import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
-import Loading from "@/components/ui/loading";
+import Loading from "@/components/shared/loading";
+import clsx from "clsx";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic", "latin"],
   display: "swap",
 });
 
-// ✅ IMPROVED: Better metadata with template and social tags
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_UR || "https://hosseinkhedmati.ir";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+
   title: {
-    template: '%s | Hossein Khedmati',
+    template: "%s | Hossein Khedmati",
     default: "Hossein Khedmati - Portfolio",
   },
   description: "Hossein Khedmati - Portfolio",
@@ -27,12 +32,11 @@ export const metadata: Metadata = {
   creator: "Hossein Khedmati",
   publisher: "Hossein Khedmati",
 
-  // Open Graph for social sharing
   openGraph: {
     title: "Hossein Khedmati - Portfolio",
     description: "Explore the portfolio of Hossein Khedmati",
-    url: "https://yourdomain.com",
-    siteName: "Hossein Khedmati Portfolio",
+    url: SITE_URL,
+    siteName: "hosseinkhedmati.ir",
     locale: "en_US",
     type: "website",
     images: [
@@ -41,31 +45,28 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: "Hossein Khedmati Portfolio",
+        type: "image/png",
       },
     ],
   },
 
-  // Twitter Card
   twitter: {
     card: "summary_large_image",
     title: "Hossein Khedmati - Portfolio",
     description: "Explore the portfolio of Hossein Khedmati",
-    images: ["https://yourdomain.com"],
+    images: ["/profile.png"],
     creator: "@yourtwitterhandle",
   },
 
-  // Icons
   icons: {
     icon: "/logo-android.png",
     apple: "/logo-apple.png",
   },
 
-  // ✅ CRITICAL: Canonical URL (important for SEO)
   alternates: {
-    canonical: "https://yourdomain.com",
+    canonical: SITE_URL,
   },
 
-  // Robots meta (optional, but good practice)
   robots: {
     index: true,
     follow: true,
@@ -100,11 +101,11 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} dir={dir} className="h-full antialiased">
-      <body className={`min-h-full flex flex-col ${vazirmatn.className}`}>
+      <body className={clsx("min-h-full flex flex-col", vazirmatn.className)}>
         <NextIntlClientProvider>
           <Suspense fallback={<Loading />}>
             <Header />
-            {/* <CustomCursor /> */}
+            <CustomCursor />
             {children}
             <Footer />
           </Suspense>

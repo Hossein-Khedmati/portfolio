@@ -366,7 +366,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     handleDeviceOrientation,
   ]);
 
-  const cardRadius = "30px";
+  const cardRadius = "32px";
 
   const cardStyle = useMemo(
     () => ({
@@ -482,7 +482,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   return (
     <div
       ref={wrapRef}
-      className={`relative touch-none overflow-hidden ${className}`.trim()}
+      className={`relative touch-none overflow-hidden max-md:pointer-events-none  ${className}`.trim()}
       style={
         {
           perspective: "500px",
@@ -503,18 +503,16 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       )}
       <div
         ref={shellRef}
-        className="relative z-1 group max-sm:flex justify-center "
+        className="relative z-1 group max-sm:flex justify-center max-md:pointer-events-none"
       >
         <section
-          className="grid relative overflow-hidden"
+          className="grid relative overflow-hidden "
           style={{
             height: "80svh",
             maxHeight: "460px",
             aspectRatio: "0.718",
             borderRadius: cardRadius,
             backgroundBlendMode: "color-dodge, normal, normal, normal",
-            boxShadow:
-              "rgba(0, 0, 0, 0.8) calc((var(--pointer-from-left) * 10px) - 3px) calc((var(--pointer-from-top) * 20px) - 6px) 20px -5px",
             transition: "transform 1s ease",
             transform: "translateZ(0) rotateX(0deg) rotateY(0deg)",
             background: "rgba(0, 0, 0, 0.9)",
@@ -677,7 +675,6 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                     display: "block",
                     gridArea: "auto",
                     borderRadius: "0",
-                    pointerEvents: "auto",
                   }}
                 >
                   {name}

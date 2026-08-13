@@ -10,7 +10,7 @@ import {
   ReactIcon,
   TailwindIcon,
   TsIcon,
-} from "../icons";
+} from "@/components/icons";
 
 const chain = [
   {
