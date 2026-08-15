@@ -12,7 +12,7 @@ export const HeroSection = () => {
 
   return (
     <div className="w-full relative overflow-hidden py-10 h-fit">
-      <div className="absolute top-0 left-0 w-full h-full z-0">
+      <div className="absolute top-0 left-0 w-full h-full z-0 max-md:pointer-events-none">
         <FaultyTerminal
           scale={1.9}
           gridMul={[2, 1]}

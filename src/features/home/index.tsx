@@ -73,12 +73,12 @@ export const HomePage = () => {
           <ProfileCard
             name={t("fullName")}
             title={t("role")}
-            avatarUrl="/profile.png"
+            avatarUrl="/profile.webp"
             showUserInfo={false}
             enableTilt={true}
             enableMobileTilt={false}
             behindGlowColor="rgba(125, 190, 255, 0.67)"
-            iconUrl="/iconpattern.png"
+            iconUrl="/iconpattern.webp"
             behindGlowEnabled
             innerGradient="linear-gradient(145deg,#60496e8c 0%,#71C4FF44 100%)"
           />
