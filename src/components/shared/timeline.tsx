@@ -1,7 +1,7 @@
 // components/ui/timeline.tsx
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { Job, timeLineJobsData } from "@/data/experiences/experiences-tiemline";
 import { useLocale, useTranslations } from "next-intl";
@@ -63,7 +63,11 @@ function JobCard({ job, isLeft }: { job: Job; isLeft: boolean }) {
             {job.jobTitle[locale]}
           </p>
         </div>
-        <DateBadge locale={locale} startDate={job.startDate} endDate={job.endDate} />
+        <DateBadge
+          locale={locale}
+          startDate={job.startDate}
+          endDate={job.endDate}
+        />
       </div>
 
       <div className="my-3 h-px bg-border-dark/60" />
@@ -123,15 +127,21 @@ function ScrollProgressLine({
 }) {
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 70%", "end 80%"],
+    offset: ["start 60%", "end 60%"],
   });
 
   const scaleY = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 25,
+    stiffness: 120,
+    damping: 30,
+    mass: 0.3,
     restDelta: 0.001,
   });
-  const glowTop = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  const glowTop = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.9, 1],
+    ["0%", "5%", "95%", "100%"],
+  );
 
   return (
     <>
@@ -166,7 +176,7 @@ function DesktopTimeline({
         <ScrollProgressLine containerRef={containerRef} />
       </div>
 
-      <div className="space-y-12">
+      <div className="space-y-16">
         {/* Start Node */}
         <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
           <div />
@@ -281,6 +291,14 @@ function MobileTimeline({
 
 export default function JobTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const el = containerRef.current;
+      const height = el.getBoundingClientRect().height;
+      el.style.minHeight = `${height}px`;
+    }
+  }, []);
 
   return (
     <section ref={containerRef} className="container py-6">
