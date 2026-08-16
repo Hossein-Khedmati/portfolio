@@ -391,7 +391,7 @@ export default function ContactPage() {
               ${
                 submitStatus === "success"
                   ? "bg-success text-white"
-                  : "bg-primary text-background hover:scale-[1.01] active:scale-[0.98]"
+                  : "bg-primary-dark text-foreground hover:scale-[1.01] active:scale-[0.98]"
               }
               disabled:opacity-50
               disabled:cursor-not-allowed
