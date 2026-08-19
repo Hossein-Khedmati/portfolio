@@ -1,4 +1,3 @@
-// app/[locale]/skills/page.tsx
 "use client";
 
 import {
@@ -30,7 +29,10 @@ import {
 } from "@/components/icons";
 
 import { motion } from "motion/react";
+import { Metadata } from "next";
 import { useTranslations } from "next-intl";
+
+
 
 const skillCategories = [
   {

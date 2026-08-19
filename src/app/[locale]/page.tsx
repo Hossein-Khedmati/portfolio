@@ -1,4 +1,3 @@
-// app/[locale]/page.tsx
 import { HomePage } from "@/features/home";
 import { Metadata } from "next";
 
