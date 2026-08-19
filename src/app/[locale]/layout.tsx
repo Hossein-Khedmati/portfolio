@@ -10,75 +10,86 @@ import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import Loading from "@/components/shared/loading";
 import clsx from "clsx";
+import { locales } from "@/config/locales";
 
 const vazirmatn = Vazirmatn({
   subsets: ["arabic", "latin"],
   display: "swap",
 });
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_UR || "https://hosseinkhedmati.ir";
+const SITE_URL = "https://hosseinkhedmati.ir";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
 
-  title: {
-    template: "%s | Hossein Khedmati",
-    default: "Hossein Khedmati - Portfolio",
-  },
-  description: "Hossein Khedmati - Portfolio",
-  keywords: ["portfolio", "developer", "Hossein Khedmati"],
-  authors: [{ name: "Hossein Khedmati" }],
-  creator: "Hossein Khedmati",
-  publisher: "Hossein Khedmati",
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      template: "%s | Hossein Khedmati",
+      default: "Hossein Khedmati - Portfolio",
+    },
+    description: "Hossein Khedmati - Portfolio",
+    keywords: ["portfolio", "developer", "Hossein Khedmati"],
+    authors: [{ name: "Hossein Khedmati" }],
+    creator: "Hossein Khedmati",
+    publisher: "Hossein Khedmati",
 
-  openGraph: {
-    title: "Hossein Khedmati - Portfolio",
-    description: "Explore the portfolio of Hossein Khedmati",
-    url: SITE_URL,
-    siteName: "hosseinkhedmati.ir",
-    locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: "/profile.png",
-        width: 1200,
-        height: 630,
-        alt: "Hossein Khedmati Portfolio",
-        type: "image/png",
-      },
-    ],
-  },
+    openGraph: {
+      title: "Hossein Khedmati - Portfolio",
+      description: "Explore the portfolio of Hossein Khedmati",
+      url: `${SITE_URL}/${locale}`,
+      siteName: "hosseinkhedmati.ir",
+      locale: locale === "fa" ? "fa_IR" : "en_US",
+      type: "website",
+      images: [
+        {
+          url: "/profile.png",
+          width: 1200,
+          height: 630,
+          alt: "Hossein Khedmati Portfolio",
+          type: "image/png",
+        },
+      ],
+    },
 
-  twitter: {
-    card: "summary_large_image",
-    title: "Hossein Khedmati - Portfolio",
-    description: "Explore the portfolio of Hossein Khedmati",
-    images: ["/profile.png"],
-    creator: "@yourtwitterhandle",
-  },
+    twitter: {
+      card: "summary_large_image",
+      title: "Hossein Khedmati - Portfolio",
+      description: "Explore the portfolio of Hossein Khedmati",
+      images: ["/profile.png"],
+      // remove `creator` entirely if you don't have a real handle —
+      // a fake @yourtwitterhandle looks worse than omitting it
+    },
 
-  icons: {
-    icon: "/logo-android.png",
-    apple: "/logo-apple.png",
-  },
+    icons: {
+      icon: "/logo-android.png",
+      apple: "/logo-apple.png",
+    },
 
-  alternates: {
-    canonical: SITE_URL,
-  },
+    alternates: {
+      canonical: `${SITE_URL}/${locale}`,
+      languages: Object.fromEntries(
+        locales.map((l) => [l, `${SITE_URL}/${l}`])
+      ),
+    },
 
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+  };
+}
 
 type Props = {
   children: React.ReactNode;

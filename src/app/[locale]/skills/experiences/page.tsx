@@ -222,4 +222,3 @@ function SectionTitle({ title }: { title: string }) {
     </h4>
   );
 }
-
