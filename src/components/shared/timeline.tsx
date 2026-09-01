@@ -1,8 +1,8 @@
 // components/ui/timeline.tsx
 "use client";
 
-import { useRef, useEffect } from "react";
-import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import { useRef } from "react";
+import { motion } from "motion/react";
 import { Job, timeLineJobsData } from "@/data/experiences/experiences-tiemline";
 import { useLocale, useTranslations } from "next-intl";
 import { Locale } from "@/config/locales";
@@ -14,14 +14,8 @@ function DateBadge({
   endDate,
   locale,
 }: {
-  startDate: {
-    en: string;
-    fa: string;
-  };
-  endDate: {
-    en: string;
-    fa: string;
-  };
+  startDate: { en: string; fa: string };
+  endDate: { en: string; fa: string };
   locale: Locale;
 }) {
   const t = useTranslations("HomePage.experiences");
@@ -49,7 +43,8 @@ function JobCard({ job, isLeft }: { job: Job; isLeft: boolean }) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="relative rounded-2xl border-2 border-border-dark bg-surface p-5 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md"
+      style={{ contentVisibility: "auto" }}
+      className="relative rounded-2xl border-2 border-border-dark bg-surface p-5 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-primary/30 hover:shadow-md"
     >
       <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
@@ -107,77 +102,44 @@ function TimelineDot({ isLarge }: { isLarge?: boolean }) {
     >
       <div className={`${innerSize} rounded-full bg-primary`} />
 
+      {/* CSS-only pulse: runs on the compositor, not the JS thread */}
       {isLarge && (
-        <motion.div
-          animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0.5, 0.2] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute inset-0 rounded-full bg-primary/20"
-        />
+        <span className="pulse-ring absolute inset-0 rounded-full bg-primary/20" />
       )}
     </motion.div>
   );
 }
 
-// ─── Scroll Line Controller ───────────────────────────────────────────────────
+// ─── Stable Line (no scroll tracking) ─────────────────────────────────────────
 
-function ScrollProgressLine({
-  containerRef,
-}: {
-  containerRef: React.RefObject<HTMLDivElement | null>;
-}) {
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 60%", "end 60%"],
-  });
-
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    mass: 0.3,
-    restDelta: 0.001,
-  });
-
-  const glowTop = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.9, 1],
-    ["0%", "5%", "95%", "100%"],
-  );
-
+function StableProgressLine() {
   return (
     <>
       <div className="absolute inset-0 w-0.5 bg-border-dark" />
       <motion.div
-        style={{ scaleY, transformOrigin: "top" }}
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        style={{ transformOrigin: "top" }}
         className="absolute inset-0 w-0.5 bg-linear-to-b from-primary via-primary/70 to-primary/40"
       />
-      <motion.div
-        style={{ top: glowTop }}
-        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-      >
-        <div className="h-3 w-3 rounded-full bg-primary shadow-[0_0_12px_4px] shadow-primary/50" />
-      </motion.div>
     </>
   );
 }
 
 // ─── Desktop View ─────────────────────────────────────────────────────────────
 
-function DesktopTimeline({
-  containerRef,
-}: {
-  containerRef: React.RefObject<HTMLDivElement | null>;
-}) {
+function DesktopTimeline() {
   const t = useTranslations("HomePage.experiences");
 
   return (
     <div className="hidden md:block relative max-w-5xl mx-auto">
-      {/* Center Line Track - Anchored precisely to dot centers */}
       <div className="absolute left-1/2 -translate-x-1/2 top-12 bottom-18 w-0.5">
-        <ScrollProgressLine containerRef={containerRef} />
+        <StableProgressLine />
       </div>
 
       <div className="space-y-16">
-        {/* Start Node */}
         <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
           <div />
           <div className="z-10 flex flex-col items-center">
@@ -191,7 +153,6 @@ function DesktopTimeline({
           <div />
         </div>
 
-        {/* Cards & Nodes */}
         {timeLineJobsData.map((job, index) => {
           const isLeft = index % 2 === 0;
           return (
@@ -199,21 +160,15 @@ function DesktopTimeline({
               key={job.id}
               className="grid grid-cols-[1fr_auto_1fr] items-center gap-8"
             >
-              {/* Left Column */}
               <div>{isLeft && <JobCard job={job} isLeft={isLeft} />}</div>
-
-              {/* Center Dot */}
               <div className="z-10 flex justify-center">
                 <TimelineDot />
               </div>
-
-              {/* Right Column */}
               <div>{!isLeft && <JobCard job={job} isLeft={isLeft} />}</div>
             </div>
           );
         })}
 
-        {/* End Node */}
         <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-8">
           <div />
           <div className="z-10 flex flex-col items-center">
@@ -236,20 +191,14 @@ function DesktopTimeline({
 
 // ─── Mobile View ──────────────────────────────────────────────────────────────
 
-function MobileTimeline({
-  containerRef,
-}: {
-  containerRef: React.RefObject<HTMLDivElement | null>;
-}) {
+function MobileTimeline() {
   const t = useTranslations("HomePage.experiences");
   return (
     <div className="relative flex flex-col gap-8 md:hidden">
-      {/* Mobile Track Line */}
       <div className="absolute inset-s-5.75 top-6 bottom-6 w-0.5">
-        <ScrollProgressLine containerRef={containerRef} />
+        <StableProgressLine />
       </div>
 
-      {/* Start Mobile Node */}
       <div className="flex items-center gap-4">
         <TimelineDot isLarge />
         <div>
@@ -259,7 +208,6 @@ function MobileTimeline({
         </div>
       </div>
 
-      {/* Job Items */}
       {timeLineJobsData.map((job) => (
         <div key={job.id} className="flex gap-4 items-start">
           <div className="z-10 flex justify-center w-12 pt-4">
@@ -271,7 +219,6 @@ function MobileTimeline({
         </div>
       ))}
 
-      {/* End Mobile Node */}
       <div className="flex items-center gap-4">
         <TimelineDot isLarge />
         <div>
@@ -292,18 +239,10 @@ function MobileTimeline({
 export default function JobTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (containerRef.current) {
-      const el = containerRef.current;
-      const height = el.getBoundingClientRect().height;
-      el.style.minHeight = `${height}px`;
-    }
-  }, []);
-
   return (
     <section ref={containerRef} className="container py-6">
-      <DesktopTimeline containerRef={containerRef} />
-      <MobileTimeline containerRef={containerRef} />
+      <DesktopTimeline />
+      <MobileTimeline />
     </section>
   );
 }
