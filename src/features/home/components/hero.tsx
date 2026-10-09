@@ -12,25 +12,26 @@ export const HeroSection = () => {
 
   return (
     <div className="w-full relative overflow-hidden py-10 h-fit">
-      <div className="absolute top-0 left-0 w-full h-full z-0 max-md:pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-full z-0 max-md:pointer-events-none will-change-transform">
         <FaultyTerminal
           scale={1.9}
           gridMul={[2, 1]}
           digitSize={1.1}
-          timeScale={0.4}
+          timeScale={0.3}
           pause={false}
-          scanlineIntensity={0.5}
-          glitchAmount={1}
-          flickerAmount={1}
-          noiseAmp={0.7}
+          scanlineIntensity={0.4}
+          glitchAmount={0.8}
+          flickerAmount={0.7}
+          noiseAmp={0.5}
           chromaticAberration={0}
           dither={0}
-          curvature={0.2}
+          curvature={0.15}
           tint="#483fcb"
-          mouseReact
-          mouseStrength={0.5}
-          pageLoadAnimation
+          mouseReact={false}
+          mouseStrength={0}
+          pageLoadAnimation={false}
           brightness={0.6}
+          dpr={1}
         />
       </div>
 
