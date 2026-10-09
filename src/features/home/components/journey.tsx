@@ -1,7 +1,7 @@
 import Link from "next/link";
 import JobTimeline from "@/components/shared/timeline";
 import { useTranslations } from "next-intl";
-import { SolarSystem } from "./solar-system";
+import SkillsChain from "./skill-chain";
 
 export const JourneySection = () => {
   const tSkills = useTranslations("HomePage.skills");
@@ -18,7 +18,7 @@ export const JourneySection = () => {
           </h4>
         </div>
         <div className="flex justify-center items-center w-full">
-        <SolarSystem />
+        <SkillsChain/>
         </div>
         <div className="container flex justify-center py-10 ">
           <Link

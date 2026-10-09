@@ -19,7 +19,7 @@ export const AboutSection = () => {
   const stats = t.raw("stats");
 
   return (
-    <div className="container py-10 flex gap-5 max-lg:flex-col-reverse">
+    <div className="container py-10 flex gap-5 max-lg:flex-col-reverse" style={{ contain: 'layout style paint' }}>
       <div className="flex-2 flex flex-col gap-5">
         <h6 className="text-base sm:text-lg text-primary">{t("title")}</h6>
         <h2 className="text-3xl sm:text-4xl lg:text-[50px] font-bold leading-tight">
@@ -32,8 +32,9 @@ export const AboutSection = () => {
         <div className="grid grid-cols-4 gap-10 max-lg:grid-cols-2 max-lg:gap-5 ">
           {stats.map((stat: Stat) => (
             <div
-              className="relative p-0.5 rounded-2xl bg-linear-to-r from-primary-dark via-border to-secondary-dark animate-gradient hover:scale-105 transition-all duration-300 flex items-stretch"
+              className="relative p-0.5 rounded-2xl bg-linear-to-r from-primary-dark via-border to-secondary-dark animate-gradient hover:scale-105 transition-transform duration-300 flex items-stretch"
               key={stat.label}
+              style={{ contain: 'layout style paint' }}
             >
               <div className="flex flex-col items-center justify-center p-5 rounded-2xl bg-surface backdrop-blur-sm gap-1 min-h-25 w-full">
                 <span className="text-xl sm:text-2xl" ref={ref}>

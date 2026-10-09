@@ -1,0 +1,72 @@
+/* Performance optimizations for smooth scrolling */
+
+/* Enable hardware acceleration for smooth scrolling */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optimize scroll performance */
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Layer promotion for animated elements */
+.will-change-scroll {
+  will-change: scroll-position;
+}
+
+/* Reduce paint areas */
+[class*="animate-"],
+[class*="motion-"],
+.transition-all,
+.transition-transform,
+.transition-opacity {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Optimize backdrop filters */
+[class*="backdrop-blur"] {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  isolation: isolate;
+}
+
+/* Contain layout for cards and components */
+.code-block,
+[class*="card"],
+[class*="profile"] {
+  contain: layout style paint;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize images */
+img {
+  content-visibility: auto;
+}
+
+/* Passive event listeners hint */
+html {
+  touch-action: pan-y;
+}

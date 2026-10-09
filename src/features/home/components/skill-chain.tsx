@@ -125,10 +125,10 @@ function Connectors({ edges }: { edges: EdgePath[] }) {
     >
       <defs>
         <linearGradient id="beam" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#0ea5e9" stopOpacity={0} />
-          <stop offset="40%" stopColor="#38bdf8" stopOpacity={1} />
-          <stop offset="60%" stopColor="#7dd3fc" stopOpacity={1} />
-          <stop offset="100%" stopColor="#0ea5e9" stopOpacity={0} />
+          <stop offset="0%" stopColor="var(--primary)" stopOpacity={0} />
+          <stop offset="40%" stopColor="var(--primary-light)" stopOpacity={1} />
+          <stop offset="60%" stopColor="var(--primary-light)" stopOpacity={1} />
+          <stop offset="100%" stopColor="var(--primary)" stopOpacity={0} />
         </linearGradient>
         <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="2.5" result="blur" />
@@ -145,15 +145,16 @@ function Connectors({ edges }: { edges: EdgePath[] }) {
           <path
             d={edge.d}
             fill="none"
-            stroke="#1e3a4a"
+            stroke="var(--primary-dark)"
             strokeWidth={1.5}
             strokeLinecap="round"
+            opacity={0.3}
           />
           {/* Subtle glow base */}
           <path
             d={edge.d}
             fill="none"
-            stroke="#0ea5e9"
+            stroke="var(--primary-light)"
             strokeWidth={1}
             strokeLinecap="round"
             opacity={0.12}
@@ -227,12 +228,17 @@ function SkillNode({
       {/* Pulsing border ring */}
       <motion.div
         className="absolute rounded-xl border"
-        style={{ borderColor: `${node.color}40`, inset: -3 }}
+        style={{
+          borderColor: `${node.color}40`,
+          inset: -3,
+          contain: "layout style paint",
+        }}
         animate={{ opacity: [0.3, 0.9, 0.3], scale: [0.97, 1.04, 0.97] }}
         transition={{
-          duration: 2.8,
+          duration: 3.5,
           repeat: Infinity,
           delay: stageIndex * 0.3 + nodeIndex * 0.15,
+          ease: "easeInOut",
         }}
       />
 
@@ -302,76 +308,90 @@ export default function SkillsChain() {
 
   const recalc = useCallback(() => {
     if (!containerRef.current) return;
-    const cRect = containerRef.current.getBoundingClientRect();
 
-    const positions = new Map<string, NodePos>();
-    nodeEls.current.forEach((el, id) => {
-      const r = el.getBoundingClientRect();
-      positions.set(id, {
-        id,
-        x: r.left - cRect.left,
-        y: r.top - cRect.top,
-        w: r.width,
-        h: r.height,
+    // Use requestAnimationFrame for smoother calculations
+    requestAnimationFrame(() => {
+      if (!containerRef.current) return;
+      const cRect = containerRef.current.getBoundingClientRect();
+
+      const positions = new Map<string, NodePos>();
+      nodeEls.current.forEach((el, id) => {
+        const r = el.getBoundingClientRect();
+        positions.set(id, {
+          id,
+          x: r.left - cRect.left,
+          y: r.top - cRect.top,
+          w: r.width,
+          h: r.height,
+        });
       });
-    });
 
-    const paths: EdgePath[] = [];
-    edges.forEach(([fromId, toId], i) => {
-      const from = positions.get(fromId);
-      const to = positions.get(toId);
-      if (!from || !to) return;
+      const paths: EdgePath[] = [];
+      edges.forEach(([fromId, toId], i) => {
+        const from = positions.get(fromId);
+        const to = positions.get(toId);
+        if (!from || !to) return;
 
-      // Connection points: right-center of "from", left-center of "to" (desktop)
-      // bottom-center of "from", top-center of "to" (mobile)
-      let fx: number, fy: number, tx: number, ty: number;
+        // Connection points: right-center of "from", left-center of "to" (desktop)
+        // bottom-center of "from", top-center of "to" (mobile)
+        let fx: number, fy: number, tx: number, ty: number;
 
-      if (isMobile) {
-        fx = from.x + from.w / 2;
-        fy = from.y + from.h;
-        tx = to.x + to.w / 2;
-        ty = to.y;
-      } else {
-        fx = from.x + from.w;
-        fy = from.y + from.h / 2;
-        tx = to.x;
-        ty = to.y + to.h / 2;
-      }
+        if (isMobile) {
+          fx = from.x + from.w / 2;
+          fy = from.y + from.h;
+          tx = to.x + to.w / 2;
+          ty = to.y;
+        } else {
+          fx = from.x + from.w;
+          fy = from.y + from.h / 2;
+          tx = to.x;
+          ty = to.y + to.h / 2;
+        }
 
-      // Smooth cubic bezier
-      const dx = Math.abs(tx - fx);
-      const dy = Math.abs(ty - fy);
-      let d: string;
+        // Smooth cubic bezier
+        const dx = Math.abs(tx - fx);
+        const dy = Math.abs(ty - fy);
+        let d: string;
 
-      if (isMobile) {
-        const cy = (fy + ty) / 2;
-        d = `M ${fx} ${fy} C ${fx} ${cy}, ${tx} ${cy}, ${tx} ${ty}`;
-      } else {
-        const cx1 = fx + dx * 0.5;
-        const cy1 = fy;
-        const cx2 = tx - dx * 0.5;
-        const cy2 = ty;
-        d = `M ${fx} ${fy} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${tx} ${ty}`;
-      }
+        if (isMobile) {
+          const cy = (fy + ty) / 2;
+          d = `M ${fx} ${fy} C ${fx} ${cy}, ${tx} ${cy}, ${tx} ${ty}`;
+        } else {
+          const cx1 = fx + dx * 0.5;
+          const cy1 = fy;
+          const cx2 = tx - dx * 0.5;
+          const cy2 = ty;
+          d = `M ${fx} ${fy} C ${cx1} ${cy1}, ${cx2} ${cy2}, ${tx} ${ty}`;
+        }
 
-      paths.push({
-        id: `${fromId}-${toId}`,
-        d,
-        beamDuration: 1.4 + (i % 3) * 0.3,
-        beamDelay: i * 0.2,
+        paths.push({
+          id: `${fromId}-${toId}`,
+          d,
+          beamDuration: 1.4 + (i % 3) * 0.3,
+          beamDelay: i * 0.2,
+        });
       });
-    });
 
-    setEdgePaths(paths);
+      setEdgePaths(paths);
+    });
   }, [isMobile]);
 
   useEffect(() => {
     // Small timeout to let layout settle
     const t = setTimeout(recalc, 80);
-    window.addEventListener("resize", recalc);
+
+    // Throttle resize events
+    let resizeTimeout: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(recalc, 150);
+    };
+
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => {
       clearTimeout(t);
-      window.removeEventListener("resize", recalc);
+      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", handleResize);
     };
   }, [recalc]);
 

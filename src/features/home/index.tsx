@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from "react";
 import {
   HeroSection,
   ContactBox,
@@ -7,11 +10,25 @@ import {
 } from "./components";
 
 export const HomePage = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Add smooth scrolling
+    document.documentElement.style.scrollBehavior = 'auto';
+    
+    // Mark as loaded after initial render
+    setIsLoaded(true);
+    
+    return () => {
+      document.documentElement.style.scrollBehavior = '';
+    };
+  }, []);
+
   return (
-    <div>
+    <div className="will-change-scroll">
       <HeroSection />
       <AboutSection />
-      <JourneySection />
+      {isLoaded && <JourneySection />}
       <FeaturedProjects />
       <ContactBox />
     </div>
