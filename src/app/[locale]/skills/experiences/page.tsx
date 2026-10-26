@@ -6,7 +6,6 @@ import {
 } from "@/data/experiences/experiences-page";
 import { Locale } from "@/config/locales";
 import { useLocale, useTranslations } from "next-intl";
-import { Metadata } from "next";
 
 export default function ExperiencesPage() {
   const locale = (useLocale() as Locale) ?? "en";

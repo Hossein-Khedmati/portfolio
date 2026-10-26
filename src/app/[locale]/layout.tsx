@@ -26,32 +26,45 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const { getTranslations } = await import('next-intl/server');
+  const t = await getTranslations({ locale, namespace: 'metadata.home' });
+
+  const title = t('title');
+  const description = t('description');
+  const keywords = t('keywords');
+  const ogTitle = t('ogTitle');
+  const ogDescription = t('ogDescription');
 
   return {
     metadataBase: new URL(SITE_URL),
     title: {
       template: "%s | Hossein Khedmati",
-      default: "Hossein Khedmati - Portfolio",
+      default: title,
     },
-    description: "Hossein Khedmati - Portfolio",
-    keywords: ["portfolio", "developer", "Hossein Khedmati"],
-    authors: [{ name: "Hossein Khedmati" }],
+    description,
+    keywords: keywords.split(',').map(k => k.trim()),
+    authors: [{ name: "Hossein Khedmati", url: SITE_URL }],
     creator: "Hossein Khedmati",
     publisher: "Hossein Khedmati",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
 
     openGraph: {
-      title: "Hossein Khedmati - Portfolio",
-      description: "Explore the portfolio of Hossein Khedmati",
+      title: ogTitle,
+      description: ogDescription,
       url: `${SITE_URL}/${locale}`,
-      siteName: "hosseinkhedmati.ir",
+      siteName: "Hossein Khedmati",
       locale: locale === "fa" ? "fa_IR" : "en_US",
       type: "website",
       images: [
         {
-          url: "/profile.png",
+          url: `${SITE_URL}/og-image.png`,
           width: 1200,
           height: 630,
-          alt: "Hossein Khedmati Portfolio",
+          alt: ogTitle,
           type: "image/png",
         },
       ],
@@ -59,11 +72,9 @@ export async function generateMetadata({
 
     twitter: {
       card: "summary_large_image",
-      title: "Hossein Khedmati - Portfolio",
-      description: "Explore the portfolio of Hossein Khedmati",
-      images: ["/profile.png"],
-      // remove `creator` entirely if you don't have a real handle —
-      // a fake @yourtwitterhandle looks worse than omitting it
+      title: ogTitle,
+      description: ogDescription,
+      images: [`${SITE_URL}/og-image.png`],
     },
 
     icons: {
@@ -113,6 +124,35 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} dir={dir} className="h-full antialiased">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Hossein Khedmati',
+              url: 'https://hosseinkhedmati.ir',
+              jobTitle: 'Frontend Developer',
+              description: 'Professional Frontend Developer specializing in React, Next.js, and TypeScript',
+              knowsAbout: [
+                'React.js',
+                'Next.js',
+                'TypeScript',
+                'JavaScript',
+                'Web Development',
+                'Frontend Development',
+                'Tailwind CSS',
+              ],
+              sameAs: [
+                'https://github.com/hosseinkhedmati',
+                'https://linkedin.com/in/hosseinkhedmati',
+                'https://t.me/hosseinkhedmati',
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className={clsx("min-h-full flex flex-col", vazirmatn.className)}>
         <NextIntlClientProvider>
           <Suspense fallback={<Loading />}>
