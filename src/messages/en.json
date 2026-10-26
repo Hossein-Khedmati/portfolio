@@ -9,6 +9,43 @@
     "navigation": "Navigation",
     "close": "Close"
   },
+  "metadata": {
+    "home": {
+      "title": "Hossein Khedmati - Frontend Developer | React & Next.js Expert",
+      "description": "Professional Frontend Developer specializing in React, Next.js, and TypeScript. Building scalable, high-performance web applications with exceptional user experiences. Available for freelance and full-time opportunities.",
+      "keywords": "Hossein Khedmati, Frontend Developer, React Developer, Next.js Developer, TypeScript, Web Development, UI/UX, JavaScript, Iran Developer, Freelance Developer",
+      "ogTitle": "Hossein Khedmati - Frontend Developer Portfolio",
+      "ogDescription": "Explore the portfolio of Hossein Khedmati - Frontend Developer building modern web applications with React, Next.js & TypeScript"
+    },
+    "skills": {
+      "title": "Skills & Technologies - Hossein Khedmati",
+      "description": "Explore my technical skills and expertise: React.js, Next.js, TypeScript, JavaScript, Tailwind CSS, State Management, Testing, and modern web development tools. 2+ years of professional experience in frontend development.",
+      "keywords": "React skills, Next.js expertise, TypeScript developer, Frontend technologies, JavaScript ES6+, Tailwind CSS, Redux, TanStack Query, Web development skills, UI engineering",
+      "ogTitle": "Technical Skills & Expertise - Hossein Khedmati",
+      "ogDescription": "Frontend development skills: React, Next.js, TypeScript, State Management, UI Engineering, Testing, and modern web tools"
+    },
+    "experiences": {
+      "title": "Work Experience & Career - Hossein Khedmati",
+      "description": "Professional experience as Frontend Developer at Etmita UG and previous roles. Specialized in building scalable applications, leading technical implementations, and delivering high-quality solutions with modern technologies.",
+      "keywords": "Frontend developer experience, Etmita UG, React developer career, Next.js projects, Web development experience, Professional portfolio, Software engineer",
+      "ogTitle": "Professional Experience - Hossein Khedmati",
+      "ogDescription": "2+ years of frontend development experience building scalable applications with React, Next.js, and TypeScript"
+    },
+    "projects": {
+      "title": "Projects & Portfolio - Hossein Khedmati",
+      "description": "Browse my portfolio of web applications and projects. Real-world solutions built with React, Next.js, TypeScript focusing on performance, scalability, and beautiful user experiences. See live demos and case studies.",
+      "keywords": "Web development projects, React projects, Next.js applications, Portfolio projects, Frontend portfolio, Web app development, Case studies",
+      "ogTitle": "Web Development Projects - Hossein Khedmati",
+      "ogDescription": "Portfolio of web applications built with React, Next.js, and TypeScript - focused on performance and user experience"
+    },
+    "contact": {
+      "title": "Contact Me - Hossein Khedmati | Hire Frontend Developer",
+      "description": "Get in touch for freelance projects, full-time opportunities, or collaboration. Available for remote work worldwide. Let's discuss your web development needs and build something exceptional together.",
+      "keywords": "Hire frontend developer, Contact developer, Freelance developer Iran, Remote developer, Web development services, React developer for hire, Next.js consultant",
+      "ogTitle": "Contact - Hire Frontend Developer",
+      "ogDescription": "Available for freelance projects and full-time opportunities. Let's build your next web application together."
+    }
+  },
   "Footer": {
     "brand": "Hossein Khedmati",
     "description": "Frontend developer crafting modern, performant web experiences with clean code and pixel-perfect design.",
